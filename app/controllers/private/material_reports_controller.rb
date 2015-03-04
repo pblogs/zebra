@@ -40,6 +40,15 @@ class Private::MaterialReportsController < ApplicationController
     @job = Job.find(params[:job_id])
     @material_report = @job.material_reports.build(params[:material_report])
     @material_report.created_by = current_user.id
+
+    @load_sheet = LoadSheet.find_by_id(params[:load_sheet_id])
+    unless @load_sheet.nil?
+      @material_report.yellow_dip_start = @load_sheet.adjusted_yellow_dip_start
+      @material_report.yellow_dip_end = @load_sheet.adjusted_yellow_dip_end
+      @material_report.white_dip_start = @load_sheet.adjusted_white_dip_start
+      @material_report.white_dip_end = @load_sheet.adjusted_white_dip_end
+    end
+
     if @material_report.save
       flash[:notice] = "Material Report created!"
       redirect_to private_material_report_url(@material_report)
@@ -67,9 +76,9 @@ class Private::MaterialReportsController < ApplicationController
 
   def update_dips
     @material_report = MaterialReport.find(params[:id])
-    @load_sheet = @material_report.load_sheet
-    if @load_sheet.update_attributes(params[:load_sheet])
-      flash[:notice] = "Load Sheet Dips saved!"
+
+    if @material_report.update_attributes(params[:material_report])
+      flash[:notice] = "Material Reports Dips saved!"
       redirect_to private_material_report_url(@material_report)
     else
       render :action => :show
