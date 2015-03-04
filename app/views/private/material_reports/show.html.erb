@@ -90,7 +90,7 @@
 <br>
 
 <% if @material_report.load_sheet %>
-  <%= form_for [:private, @material_report.load_sheet], :url => private_update_dips_path do |f| %>
+  <%= form_for [:private, @material_report], :url => private_update_dips_path do |f| %>
     <%= f.error_messages %>
     <table>
       <tr>
@@ -112,21 +112,21 @@
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.yellow_dip_start %>
-            <%= f.text_field "adjusted_yellow_dip_start", :class => "span-2" %>
+            <%= f.text_field :yellow_dip_start, class: "span-2" %>
           </span>
-          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_yellow_dip_start %></span>
+          <span class="onlyprint"><%= @material_report.yellow_dip_start %></span>
         </td>
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.yellow_dip_end %>
-            <%= f.text_field "adjusted_yellow_dip_end", :class => "span-2" %>
+            <%= f.text_field :yellow_dip_end, class: "span-2" %>
           </span>
-          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_yellow_dip_end %></span>
+          <span class="onlyprint"><%= @material_report.yellow_dip_end %></span>
         </td>
         <td class="right noprint">
           <%= @material_report.next_report.load_sheet.printable_yellow_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
         </td>
-        <td class="right"><span id="yellow_used"><%= @material_report.load_sheet.yellow_dip_used %></span> cm</td>
+        <td class="right"><span id="yellow_used"><%= @material_report.yellow_dip_used %></span> cm</td>
         <td class="right"><span id="yellow_rate"><%= @material_report.yellow_rate %></span> L/cm</td>
         <td class="right"><span id="tank_yellow_calc"></span> L</td>
       </tr>
@@ -139,21 +139,21 @@
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.white_dip_start %>
-            <%= f.text_field "adjusted_white_dip_start", :class => "span-2" %>
+            <%= f.text_field :white_dip_start, class: "span-2" %>
           </span>
-          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_white_dip_start %></span>
+          <span class="onlyprint"><%= @material_report.white_dip_start %></span>
         </td>
         <td class="right">
           <span class="noprint">
             <%= @material_report.load_sheet.white_dip_end %>
-            <%= f.text_field "adjusted_white_dip_end", :class => "span-2" %>
+            <%= f.text_field :white_dip_end, class: "span-2" %>
           </span>
-          <span class="onlyprint"><%= @material_report.load_sheet.adjusted_white_dip_end %></span>
+          <span class="onlyprint"><%= @material_report.white_dip_end %></span>
         </td>
         <td class="right noprint">
           <%= @material_report.next_report.load_sheet.printable_white_dip_start if @material_report.next_report && @material_report.next_report.load_sheet %>
         </td>
-        <td class="right"><span id="white_used"><%= @material_report.load_sheet.white_dip_used %></span> cm</td>
+        <td class="right"><span id="white_used"><%= @material_report.white_dip_used %></span> cm</td>
         <td class="right"><span id="white_rate"><%= @material_report.white_rate %></span> L/cm</td>
         <td class="right"><span id="tank_white_calc"></span> L</td>
       </tr>
@@ -293,8 +293,8 @@
 
 <script type="text/javascript" language="javascript">
   function updateTable() {
-    $('white_used').innerHTML = Math.abs(($('load_sheet_adjusted_white_dip_start').getValue() - $('load_sheet_adjusted_white_dip_end').getValue())).toFixed(2)
-    $('yellow_used').innerHTML = Math.abs(($('load_sheet_adjusted_yellow_dip_start').getValue() - $('load_sheet_adjusted_yellow_dip_end').getValue())).toFixed(2)
+    $('white_used').innerHTML = Math.abs(($('material_report_white_dip_start').getValue() - $('material_report_white_dip_end').getValue())).toFixed(2)
+    $('yellow_used').innerHTML = Math.abs(($('material_report_yellow_dip_start').getValue() - $('material_report_yellow_dip_end').getValue())).toFixed(2)
     $('tank_white_calc').innerHTML = Math.abs(($('white_rate').innerHTML * $('white_used').innerHTML)).toFixed(2)
     $('tank_yellow_calc').innerHTML = Math.abs(($('yellow_rate').innerHTML * $('yellow_used').innerHTML)).toFixed(2)
     $('bead_used').innerHTML = Math.abs(((($('tank_white_calc').innerHTML * 1) + ($('tank_yellow_calc').innerHTML * 1)) * 0.6)).toFixed(2)
@@ -310,10 +310,10 @@
 
     };
 
-    $('load_sheet_adjusted_white_dip_end').observe('keyup', updateTable);
-    $('load_sheet_adjusted_white_dip_start').observe('keyup', updateTable);
-    $('load_sheet_adjusted_yellow_dip_end').observe('keyup', updateTable);
-    $('load_sheet_adjusted_yellow_dip_start').observe('keyup', updateTable);
+    $('material_report_white_dip_end').observe('keyup', updateTable);
+    $('material_report_white_dip_start').observe('keyup', updateTable);
+    $('material_report_yellow_dip_end').observe('keyup', updateTable);
+    $('material_report_yellow_dip_start').observe('keyup', updateTable);
 </script>
 
 <script language="javascript">
