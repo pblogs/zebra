@@ -227,14 +227,14 @@
     <th class="span-3">&nbsp;</th>
     <th class="right">Total Used</th>
     <th class="right">Solid+Skip Line KM</th>
-    <th class="right noprint">Used/Line KM</th>
+    <th class="right">Used/Line KM</th>
     <th class="right noprint">Target</th>
   </tr>
   <tr>
     <th>Yellow</th>
     <td class="right"><span id="summary_total_yellow_used"></span> L</td>
     <td class="right" id="summary_yellow_length"><%= @material_report.gun_sheet.yellow_length if @material_report.gun_sheet %></td>
-    <td class="right noprint" id="summary_yellow_calculation"></td>
+    <td class="right" id="summary_yellow_calculation"></td>
     <td class="right noprint">38 L/KM</td>
   </tr>
 
@@ -242,7 +242,7 @@
     <th>White</th>
     <td class="right"><span id="summary_total_white_used"></span> L</td>
     <td class="right" id="summary_white_length"><%= @material_report.gun_sheet.white_length if @material_report.gun_sheet  %></td>
-    <td class="right noprint" id="summary_white_calculation"></td>
+    <td class="right" id="summary_white_calculation"></td>
     <td class="right noprint">38 L/KM</td>
   </tr>
 
@@ -250,7 +250,7 @@
     <th>Bead</th>
     <td class="right"><span id="summary_bead_used"></span> KG</td>
     <td class="right" id="summary_bead_length"></td>
-    <td class="right noprint" id="summary_bead_calculation"></td>
+    <td class="right" id="summary_bead_calculation"></td>
     <td class="right noprint">22.2 KG/KM</td>
   </tr>
 </table>
