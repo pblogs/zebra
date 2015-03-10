@@ -47,4 +47,11 @@ class MaterialReport < ActiveRecord::Base
     pos_in_reports > 0 ? material_reports[pos_in_reports-1] : nil
   end
 
+  def yellow_dip_used
+    (self.yellow_dip_end - self.yellow_dip_start) rescue 0
+  end
+
+  def white_dip_used
+    (self.white_dip_end - self.white_dip_start) rescue 0
+  end
 end

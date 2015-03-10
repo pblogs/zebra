@@ -41,3 +41,10 @@ gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
 
 gem 'formtastic'
 gem 'wicked'
+
+#for heroku 
+gem 'rails_log_stdout'
+# gem 'rails3_serve_static_assets'
+gem 'rails_12factor'
+gem 'heroku'
+gem 'thin'
