@@ -46,6 +46,14 @@ AaaStriping::Application.routes.draw do
     resources :time_entries
   end
 
+  namespace :api do
+    resources :crews do
+      member do
+        get :jobs
+      end
+    end
+  end
+
   match '/admin' => 'private#index', :as => :private_home
   match '/admin/navigate' => 'private#navigate', :as => :private_navigate
 
