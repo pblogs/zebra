@@ -28,6 +28,7 @@
     <td class="actions">
     <%= link_to 'Delete', private_crew_path(crew), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_crew_path(crew), :class => "edit" %>
+    <%= link_to "Show", private_crew_path(crew), class: 'show' %>
     </td>
   </tr>
 <% end %>
