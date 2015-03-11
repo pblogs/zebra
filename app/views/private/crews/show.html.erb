@@ -1,0 +1,41 @@
+<%= content_for :breadcrumb do %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= link_to 'Crews', private_crews_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+<% end %>
+
+<table>
+  <tr>
+    <th class="span-3">Users</th>
+    <td style="border-top: solid 1px #ccc">
+      <%= @crew.user_list %>
+    </td>
+  </tr>
+  <tr>
+    <th class="span-3">Crew Hours</th>
+    <td><%=link_to 'Crew Hours', report_crew_time_path(@crew) %></td>
+  </tr>
+  <tr>
+    <th class="span-3">Jobs</th>
+    <td>
+      <% @crew.jobs.each do |job| %>
+          <%= link_to job.name, private_job_path(job) %>
+          <br>
+      <% end %>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="span-3">Assigned Equipment</th>
+    <td>
+      <% @crew.equipments.each do |e| %>
+          <a href="<%= private_equipment_path(e) %>" class="equipment-<%= e.color %>" style="white-space: nowrap;"><%= e.unit %></a><%= "," if e != @crew.equipments.last %>
+      <% end %>
+    </td>
+  </tr>
+
+</table>
