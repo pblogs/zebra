@@ -63,6 +63,7 @@ GEM
       multi_json (~> 1.0)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    fullcalendar-rails (2.0.2.0)
     haml (4.0.3)
       tilt
     heroku (2.34.0)
@@ -174,6 +175,7 @@ DEPENDENCIES
   declarative_authorization
   exception_notification (= 2.6.1)
   formtastic
+  fullcalendar-rails
   haml
   heroku
   jquery-rails
