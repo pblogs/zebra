@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fullcalendar
 //= require_self
 //= require_tree ./base
 //= require_tree ./elements
 //= require_tree ./pages
-//= require fullcalendar
+//= require_tree ./api
 
 jQuery.noConflict()
