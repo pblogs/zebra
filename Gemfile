@@ -42,6 +42,8 @@ gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
 gem 'formtastic'
 gem 'wicked'
 
+gem 'fullcalendar-rails'
+
 #for heroku 
 gem 'rails_log_stdout'
 # gem 'rails3_serve_static_assets'

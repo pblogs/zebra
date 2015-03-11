@@ -16,5 +16,6 @@
 //= require_tree ./base
 //= require_tree ./elements
 //= require_tree ./pages
+//= require fullcalendar
 
 jQuery.noConflict()
