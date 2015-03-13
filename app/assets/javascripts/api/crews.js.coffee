@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  url_page = jQuery('#url-page').data('url')
+
   jQuery("#calendar").fullCalendar(
     editable: true,
     header:
@@ -14,8 +16,9 @@ jQuery ->
     height: 800,
     slotMinutes: 30,
 
+    #alert(url_page)
     eventSources: [{
-    url: '/api/crews/25/jobs',
+      url: url_page,
     }],
 
     timeFormat: 'h:mm t{ - h:mm t} ',
