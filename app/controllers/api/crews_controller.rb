@@ -4,16 +4,10 @@ class Api::CrewsController < ApplicationController
 
   def jobs
     @crew = Crew.find(params[:id])
-    @jobs = @crew.jobs.where(started_at: !nil)
+    @jobs = @crew.jobs.where('started_on IS NOT NULL')
 
     respond_to do |format|
-      format.json {
-        render json: {
-            id: @crew.id,
-            start_at: params[:start],
-            end_at: params[:end]
-        }
-      }
+      format.json { render json: @jobs, root: false }
     end
   end
 
