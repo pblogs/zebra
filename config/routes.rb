@@ -47,7 +47,7 @@ AaaStriping::Application.routes.draw do
   end
 
   namespace :api do
-    resources :crews do
+    resources :crews, only: [:jobs] do
       member do
         get :jobs
       end

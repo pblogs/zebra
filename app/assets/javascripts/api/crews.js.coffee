@@ -32,6 +32,7 @@ jQuery ->
 
   );
 
+  #TODO fix update event method
   updateEvent = (the_event) ->
     $.update "/admin/crews/" + the_event.id + "/schedule_job",
       crew:
