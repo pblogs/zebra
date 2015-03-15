@@ -12,13 +12,11 @@ jQuery ->
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     defaultView: 'month',
-
     height: 800,
-    slotMinutes: 30,
 
     #alert(url_page)
     eventSources: [{
-      url: url_page,
+      url: url_page
     }],
 
     timeFormat: 'h:mm t{ - h:mm t} ',
@@ -33,9 +31,10 @@ jQuery ->
   );
 
   #TODO fix update event method
-  updateEvent = (the_event) ->
-    $.update "/admin/crews/" + the_event.id + "/schedule_job",
+  updateEvent = (event) ->
+    $.update "/admin/crews/" + event.id + "/schedule_job",
       crew:
-        name: the_event.name,
-        starts_at: "" + the_event.start,
-        ends_at: "" + the_event.end
+        name: event.name,
+        starts_at: "" + event.start,
+        ends_at: "" + event.end,
+        allDay: false
