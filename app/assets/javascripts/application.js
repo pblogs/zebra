@@ -14,6 +14,7 @@
 //= require jquery-ui/draggable
 //= require jquery-ui/droppable
 //= require jquery-ui/resizable
+//= require jquery.minicolors
 //= require jquery_ujs
 //= require fullcalendar
 //= require_self
@@ -23,3 +24,7 @@
 //= require_tree ./api
 
 jQuery.noConflict()
+
+jQuery(document).ready(function($) {
+  $('.colorpicker').minicolors()
+});

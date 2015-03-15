@@ -2,5 +2,9 @@
   <%= form.label :name %><br>
   <%= form.text_field :name, :class => "span-6" %>
 </div>
-
+<br class="clear">
+<div class="span-6 append-bottom">
+  <%= form.label :color, 'Color - will be used in calendar.' %><br>
+  <%= form.text_field :color, class: "span-6 colorpicker" %>
+</div>
 <br class="clear">

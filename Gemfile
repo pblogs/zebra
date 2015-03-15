@@ -45,6 +45,7 @@ gem 'wicked'
 gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
 gem 'active_model_serializers'
+gem 'jquery-minicolors-rails'
 
 #for heroku
 gem 'rails_log_stdout'
