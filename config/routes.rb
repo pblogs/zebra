@@ -48,6 +48,9 @@ AaaStriping::Application.routes.draw do
 
   namespace :api do
     resources :crews, only: [:jobs] do
+      collection do
+        put :schedule_job
+      end
       member do
         get :jobs
       end

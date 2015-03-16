@@ -7,11 +7,11 @@ class JobSerializer < ActiveModel::Serializer
   end
 
   def start
-    object.started_on.beginning_of_day
+    object.started_on
   end
 
   def end
-    object.completed_on.present? ? object.completed_on.end_of_day : Date.today.end_of_day
+    object.completed_on.present? ? object.completed_on : Date.today
   end
 
   def url
@@ -27,7 +27,6 @@ class JobSerializer < ActiveModel::Serializer
   end
 
   def editable
-    # object.completed_on.present? ? false : true
-    false
+     object.is_archived? ? false : true
   end
 end
