@@ -22,10 +22,9 @@
   </tr>
   <tr>
     <th class="span-3">Jobs</th>
-    <td>
+    <td id="my-draggable">
       <% @crew.jobs.each do |job| %>
-          <%= link_to job.name, private_job_path(job) %>
-          <br>
+          <div class="fc-event" style="margin: 2px; cursor: pointer;"><%= link_to job.name, private_job_path(job) %></div>
       <% end %>
     </td>
   </tr>

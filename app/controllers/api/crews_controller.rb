@@ -11,4 +11,12 @@ class Api::CrewsController < ApplicationController
     end
   end
 
+  def schedule_job
+    @job = Job.find(params[:id])
+    @job.update_attributes(params[:job])
+
+    respond_to do |format|
+      format.json { render json: @job, root: false }
+    end
+  end
 end
