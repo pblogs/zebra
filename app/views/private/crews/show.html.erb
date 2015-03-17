@@ -8,7 +8,6 @@
     </ul>
 <% end %>
 
-<div id="url-page" data-url="<%= jobs_api_crew_path(@crew) %>">ee</div>
 <table>
   <tr>
     <th class="span-3">Users</th>
@@ -22,10 +21,17 @@
   </tr>
   <tr>
     <th class="span-3">Jobs</th>
-    <td id="my-draggable">
-      <% @crew.jobs.each do |job| %>
-          <div class="fc-event" style="margin: 2px; cursor: pointer;"><%= link_to job.name, private_job_path(job) %></div>
+    <td>
+      <div id="my-draggable">
+      <% @jobs.each do |job| %>
+        <div class="<%= 'fc-event job_item' unless job.completed? || job.started_on.present? %>"
+          data-id='<%= job.id %>'
+          data-url='<%= private_job_path(job) %>'>
+          <%= link_to job.name, private_job_path(job) %>
+          <%= '- completed' if job.completed? %>
+        </div>
       <% end %>
+      </div>
     </td>
   </tr>
 
@@ -38,4 +44,16 @@
     </td>
   </tr>
 </table>
-<div id="calendar"></div>
+
+
+<div>
+  Legend:<br>
+  <% Completion.all.each do |c| %>
+    <%= c.name %>:
+    <span class='colorbox' style='background:<%= c.color %>;padding: 0 5px;'> </span>
+    &nbsp;&nbsp;
+  <% end %>
+</div>
+<hr>
+
+<div id="calendar" data-url="<%= jobs_api_crew_path(@crew) %>"></div>

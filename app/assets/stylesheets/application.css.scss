@@ -143,3 +143,12 @@ body {
   background: #6E6E6E;
   font-size: 20px;
 }
+
+#my-draggable{width: 500px;}
+.job_item{
+  margin: 2px;
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grabbing;
+  background-color: rgb(239, 247, 255)
+}

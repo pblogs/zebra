@@ -34,6 +34,7 @@ class Private::CrewsController < ApplicationController
   def show
     @crew = Crew.find(params[:id])
     @page_title = "#{@crew.name}"
+    @jobs = @crew.jobs
   end
 
   def edit
