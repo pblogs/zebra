@@ -3,6 +3,10 @@ class Equipment < ActiveRecord::Base
   has_and_belongs_to_many :crews
   has_many :load_sheets
   has_many :gun_sheets
+  has_many :assets, as: :attachable
+
+  accepts_nested_attributes_for :assets
+
   validates_presence_of :unit
   validates_presence_of :name
   validates_presence_of :rate

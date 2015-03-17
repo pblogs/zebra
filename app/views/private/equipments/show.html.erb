@@ -69,7 +69,12 @@
     <td><%= if @equipment.rate then "$#{@equipment.rate}" end %></td>
   </tr>
 </table>
-
+<div class="span-12 noprint">
+  <h3>Assets</h3>
+  <% @equipment.assets.each do |asset| %>
+      <%=asset.image.url %>
+  <% end %>
+</div>
 <% if @equipment.crews.count > 0 %>
   <h3>Assigned to:</h3>
   <%= render :partial => 'private/crews/crews_table', :locals => {:crews => @equipment.crews} %>
