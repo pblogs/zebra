@@ -42,7 +42,12 @@ gem 'exception_notification', "= 2.6.1", :require => 'exception_notifier'
 gem 'formtastic'
 gem 'wicked'
 
-#for heroku 
+gem 'jquery-ui-rails'
+gem 'fullcalendar-rails'
+gem 'active_model_serializers'
+gem 'jquery-minicolors-rails'
+
+#for heroku
 gem 'rails_log_stdout'
 # gem 'rails3_serve_static_assets'
 gem 'rails_12factor'

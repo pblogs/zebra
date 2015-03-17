@@ -37,6 +37,10 @@ class Job < ActiveRecord::Base
     Time.zone.parse("January 31 23:59:59 #{Time.zone.now.year}")
   end
 
+  def completed?
+    self.completion_id == 6
+  end
+
   def label
     label = '#' + self.id.to_s
     label += ", " + self.name if self.name.present?

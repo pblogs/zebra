@@ -291,6 +291,20 @@
   </table>
 <% end %>
 
+<% load_entries = @material_report.load_sheet.load_entries
+   if @material_report.load_sheet.present? && load_entries.present? -%>
+  <table>
+    <tr>
+      <th>Batch #</th>
+    </tr>
+    <% load_entries.each do |entry| %>
+        <tr>
+          <td><%= entry.material.try(:batch) %></td>
+        </tr>
+    <% end %>
+  </table>
+<% end -%>
+
 <script type="text/javascript" language="javascript">
   function updateTable() {
     $('white_used').innerHTML = Math.abs(($('material_report_white_dip_start').getValue() - $('material_report_white_dip_end').getValue())).toFixed(2)

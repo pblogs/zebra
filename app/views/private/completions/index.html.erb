@@ -13,12 +13,18 @@
 <table class="sortable">
   <tr>
     <th>Name</th>
+    <th></th>
     <th class="actions nosort"></th>
   </tr>
 
 <% @completions.each do |completion| %>
   <tr>
     <td><%= completion.name %></td>
+    <td>
+      <span class='colorbox' style='background:<%= completion.color %>;padding: 0 5px;'>
+        &nbsp;&nbsp;&nbsp;
+      </span>
+    </td>
     <td class="actions">
     <%= link_to 'Delete', private_completion_path(completion), :confirm => 'Are you sure? This cannot be undone!', :method => :delete, :class => "delete" %>
     <%= link_to "Edit", edit_private_completion_path(completion), :class => "edit" %>
