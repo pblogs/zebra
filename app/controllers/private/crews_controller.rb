@@ -31,6 +31,12 @@ class Private::CrewsController < ApplicationController
     end
   end
 
+  def show
+    @crew = Crew.find(params[:id])
+    @page_title = "#{@crew.name}"
+    @jobs = @crew.jobs
+  end
+
   def edit
     @crew = Crew.find(params[:id])
     @users = User.where(:employment_state => 'Employed').order("first_name ASC")

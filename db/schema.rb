@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717212927) do
+ActiveRecord::Schema.define(:version => 20150314235550) do
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "contacts", :force => true do |t|
@@ -350,6 +351,10 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer  "gun_sheet_id"
     t.integer  "load_sheet_id"
     t.text     "comments"
+    t.decimal  "yellow_dip_start", :default => 0.0
+    t.decimal  "yellow_dip_end",   :default => 0.0
+    t.decimal  "white_dip_start",  :default => 0.0
+    t.decimal  "white_dip_end",    :default => 0.0
   end
 
   create_table "materials", :force => true do |t|
