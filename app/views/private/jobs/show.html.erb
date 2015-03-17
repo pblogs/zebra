@@ -244,6 +244,13 @@
     <%= link_to "view archived gun sheets", "?show_archived=true" if @gun_sheets_archived and !@show_archived %>
   <% end %>
 </div>
+ <hr>
+<div class="span-12 noprint">
+  <h3>Assets</h3>
+    <% @job.assets.each do |asset| %>
+        <%=asset.image.url %>
+    <% end %>
+</div>
 </div>
 
 <br>

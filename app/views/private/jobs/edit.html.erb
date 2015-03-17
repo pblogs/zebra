@@ -13,7 +13,7 @@
   <%= render :partial => 'menus/jobs_menu', :layout => false %>
 <% end %>
 
-<%= form_for @job, :url => private_job_path(@job.id), :method => :put do |f| %>
+<%= form_for @job, url: private_job_path(@job.id), html: {multipart: true, method: :put} do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Save Job" %> or <%= link_to 'Cancel', private_jobs_path %>
