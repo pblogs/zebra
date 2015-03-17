@@ -27,6 +27,7 @@ class JobSerializer < ActiveModel::Serializer
   end
 
   def editable
-     object.is_archived? ? false : true
+    return false if object.completed?
+    true
   end
 end
