@@ -248,7 +248,7 @@
 <div class="span-12 noprint">
   <h3>Assets</h3>
     <% @job.assets.each do |asset| %>
-        <%=asset.image.url %>
+      <div><%=link_to "Download #{asset.id}", asset.image.url, target: '_blank' %></div>
     <% end %>
 </div>
 </div>
