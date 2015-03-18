@@ -10,6 +10,8 @@
  *
  *= require ui-lightness/jquery-ui-1.10.3.custom
  *= require bootstrap-dropdown
+ *= require fullcalendar
+ *= require jquery.minicolors
  *= require_self
  */
 
@@ -135,4 +137,18 @@ body {
   font-size: 150%;
   font-weight: bold;
   color: green;
+}
+
+.fc-day-header {
+  background: #6E6E6E;
+  font-size: 20px;
+}
+
+#my-draggable{width: 500px;}
+.job_item{
+  margin: 2px;
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grabbing;
+  background-color: rgb(239, 247, 255)
 }

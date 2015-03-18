@@ -1,0 +1,59 @@
+<%= content_for :breadcrumb do %>
+    <ul id="breadcrumb">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= link_to 'Crews', private_crews_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+<% end %>
+
+<table>
+  <tr>
+    <th class="span-3">Users</th>
+    <td style="border-top: solid 1px #ccc">
+      <%= @crew.user_list %>
+    </td>
+  </tr>
+  <tr>
+    <th class="span-3">Crew Hours</th>
+    <td><%=link_to 'Crew Hours', report_crew_time_path(@crew) %></td>
+  </tr>
+  <tr>
+    <th class="span-3">Jobs</th>
+    <td>
+      <div id="my-draggable">
+      <% @jobs.each do |job| %>
+        <div class="<%= 'fc-event job_item' unless job.completed? || job.started_on.present? %>"
+          data-id='<%= job.id %>'
+          data-url='<%= private_job_path(job) %>'>
+          <%= link_to job.name, private_job_path(job) %>
+          <%= '- completed' if job.completed? %>
+        </div>
+      <% end %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <th class="span-3">Assigned Equipment</th>
+    <td>
+      <% @crew.equipments.each do |e| %>
+          <a href="<%= private_equipment_path(e) %>" class="equipment-<%= e.color %>" style="white-space: nowrap;"><%= e.unit %></a><%= "," if e != @crew.equipments.last %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+
+<div>
+  Legend:<br>
+  <% Completion.all.each do |c| %>
+    <%= c.name %>:
+    <span class='colorbox' style='background:<%= c.color %>;padding: 0 5px;'> </span>
+    &nbsp;&nbsp;
+  <% end %>
+</div>
+<hr>
+
+<div id="calendar" data-url="<%= jobs_api_crew_path(@crew) %>"></div>

@@ -11,7 +11,7 @@
   </ul>
 <% end %>
 
-<%= form_for @equipment, :url => private_equipments_path(@equipment) do |f| %>
+<%= form_for @equipment, url: private_equipments_path(@equipment), html: {multipart: true} do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Create Equipment" %> or <%= link_to 'Cancel', private_equipments_path %>
