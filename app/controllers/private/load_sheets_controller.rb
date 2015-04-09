@@ -38,7 +38,7 @@ class Private::LoadSheetsController < ApplicationController
       if params[:submit_and_create_another_load_sheet].present?
         redirect_to new_private_load_sheet_path
       elsif current_user.daily_report.present?   # We are in a Clock Out wizard process. Go to the next step
-        redirect_to private_daily_report_path(:paint)
+        redirect_to new_private_gun_sheet_path
       else
         if @load_sheet.job
           redirect_to private_job_url(:id => @load_sheet.job_id)
