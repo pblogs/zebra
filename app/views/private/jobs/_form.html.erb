@@ -94,4 +94,8 @@
 
 <p><%= link_to_add_fields "Add Another Location", form, :job_locations %></p>
 <hr>
-    </div>
+  <p>
+    <%= label_tag :job_assets, "Add document" %><br>
+    <%= file_field_tag('job_assets_image', multiple: true, name: "job[assets_attributes][][image]") %>
+  </p>
+</div>

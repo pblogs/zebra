@@ -1,0 +1,30 @@
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= link_to 'Crews', private_crews_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+<%= content_for :submenu do %>
+  <ol class="noprint">
+    <li><%= link_to 'New crew', new_private_crew_path %></li>
+  </ol>
+<% end %>
+
+<div style="float: left;" class="list-crews">
+  <ul>
+    <% @crews.each do |crew| %>
+      <li class="one-crew selected" data-ids="/api/events/<%= crew.id %>/jobs">
+        <div class="crew-color" style="background-color: <%= crew.color %>;" data-color="<%= crew.color %>"></div>
+        <span><%= "Crew ##{crew.id} #{crew.name}" %></span>
+      </li>
+    <% end %>
+  </ul>
+
+</div>
+<div class="calendar">
+  <div id="select-crews-calendar"></div>
+</div>
+<div  style="clear: both;"></div>

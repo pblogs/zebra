@@ -59,7 +59,7 @@ class Private::ClockOutController < ApplicationController
         when "clock_in" then @redirect = url_for :controller => "private/clock_in",  :action => "new"
         when "clock_out" then @redirect = url_for :controller => "private/clock_out", :action => "new"
         when "home" then @redirect = url_for private_home_path
-        when "new_time_sheet" then @redirect = url_for private_daily_report_path(:start)
+        when "new_time_sheet" then @redirect = url_for new_private_load_sheet_path
       end
       flash[:notice] = "Users clocked out!"
       redirect_to @redirect

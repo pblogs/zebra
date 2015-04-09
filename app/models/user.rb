@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 
   validates :roles, :length => { :minimum => 1, :message => 'Please select at least 1 role'}
 
+  has_many :comments
+
   # attr_accessible :login, :password, :password_confirmation, :email, :first_name, :last_name,:role_ids, :time_zone
 
   #for declarative authorization

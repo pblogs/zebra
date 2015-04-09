@@ -57,7 +57,7 @@
 <% else %>
   <p>There are no users who can clock in!
     <%= link_to "Clock out", {:controller => "private/clock_out", :action => "new", :job_id => @job.id} %> or
-    <%= link_to "submit a time sheet", private_daily_report_path(:start) %>.
+    <%= link_to "submit a time sheet", new_private_load_sheet_path %>.
   </p>
 <% end %>
 

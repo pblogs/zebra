@@ -29,9 +29,9 @@ authorization do
                        :private_time_task_categories, :private_time_note_categories, :private_material_reports,
                        :private_material_report_summaries, :private_reconciliation_summaries, :private_report_summaries], :to => :manage
     has_permission_on :private_material_reports, :private_material_report_summaries, :to => [:update_dips, :print]
-    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets], :to => [:create, :show]
+    has_permission_on [:private_clock_in, :private_clock_out, :private_time_sheets, :private_equipments], :to => [:create, :show, :delete_document]
 
-    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage]
+    has_permission_on [:private_jobs, :private_job_sheets, :private_time_entries, :private_estimates], :to => [:manage, :delete_document]
     has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => [:index, :read, :edit, :update, :destroy]
     has_permission_on [:jobs_value], :to => [:read]
   end
@@ -81,7 +81,9 @@ authorization do
     end
     has_permission_on :private_gun_sheets, :to => :print_selected
     has_permission_on :private_client_contacts, :to => :manage
-    has_permission_on :private_comments, :to => :manage
+    has_permission_on :private_comments, to: [:manage, :add_comment]
+    has_permission_on :api_crews, to: [:jobs, :schedule_job, :show_selected]
+    has_permission_on :private_crews, to: [:calendar]
   end
 end
 

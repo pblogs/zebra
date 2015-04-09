@@ -58,5 +58,10 @@
   <%= form.text_field :white_rate, :class => "span-6" %>
 </div>
 
+<br class="clear">
+<p>
+  <%= label_tag :job_assets, "Add document" %><br>
+  <%= file_field_tag('equipment_assets_image', multiple: true, name: "equipment[assets_attributes][][image]") %>
+</p>
 
 <br class="clear">

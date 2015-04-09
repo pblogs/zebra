@@ -50,4 +50,12 @@ class Private::EquipmentsController < ApplicationController
     redirect_to private_equipments_url
   end
 
+  def delete_document
+    @equipment = Equipment.find(params[:id])
+    document = @equipment.assets.find(params[:asset_id])
+    document.destroy
+
+    flash[:notice] = 'Equipment document deleted!'
+    redirect_to  private_equipment_path(@equipment)
+  end
 end

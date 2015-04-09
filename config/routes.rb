@@ -12,13 +12,22 @@ AaaStriping::Application.routes.draw do
     end
     resources :completions
     resources :costs
-    resources :crews
+    resources :crews do
+      collection do
+        get :calendar
+      end
+    end
     resources :estimates
-    resources :equipments
+    resources :equipments do
+      get :delete_document, on: :member
+    end
+
     resources :gun_sheets
     match 'private/gun_sheets/print_selected' => 'gun_sheets#print_selected', :as => :gun_sheets_print_selected
     resources :gun_marking_categories
     resources :jobs do
+      get :delete_document, on: :member
+
       resources :comments
       resources :gun_sheets
       resources :job_sheets
@@ -44,6 +53,23 @@ AaaStriping::Application.routes.draw do
     match 'clock_in/:action/(:id)', :controller => 'clock_in'
     match 'clock_out/:action/(:id)', :controller => 'clock_out'
     resources :time_entries
+  end
+
+  namespace :api do
+    resources :events do
+      member do
+        get :jobs
+      end
+    end
+    resources :crews do
+      collection do
+        get :show_selected
+        put :schedule_job
+      end
+      member do
+        get :jobs
+      end
+    end
   end
 
   match '/admin' => 'private#index', :as => :private_home

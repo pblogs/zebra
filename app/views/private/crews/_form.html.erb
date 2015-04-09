@@ -3,8 +3,13 @@
   <p><%= form.label :name, "Name" %><br>
   <%= form.text_field :name, :class => "span-6", :required => true %></p>
 </div>
-
+<br class="clear">
 <div class="span-6 append-bottom">
+  <%= form.label :color, 'Color - will be used in calendar.' %><br>
+  <%= form.text_field :color, class: "span-6 colorpicker" %>
+</div>
+<br class="clear">
+  <div class="span-6 append-bottom">
   <%= form.label :user_ids, "Assign Users" %><br>
   <ul class="habtm">
   <% for user in @users %>

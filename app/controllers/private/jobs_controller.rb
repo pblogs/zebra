@@ -91,6 +91,15 @@ class Private::JobsController < ApplicationController
     redirect_to(private_jobs_url)
   end
 
+  def delete_document
+    @job = Job.find(params[:id])
+    document = @job.assets.find(params[:asset_id])
+    document.destroy
+
+    flash[:notice] = 'Job document deleted!'
+    redirect_to  private_job_path(@job)
+  end
+
 private
 
   def load_job_supporting_data

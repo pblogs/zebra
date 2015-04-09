@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717212927) do
+ActiveRecord::Schema.define(:version => 20150317150318) do
+  create_table "assets", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "careers", :force => true do |t|
     t.string   "name"
@@ -76,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "contacts", :force => true do |t|
@@ -102,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color",      :default => "#3a87ad"
   end
 
   create_table "crews_equipment", :id => false, :force => true do |t|
@@ -149,6 +161,17 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer  "crew_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.integer  "crew_id"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.date     "started_on"
+    t.date     "completed_on"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "gun_marking_categories", :force => true do |t|
@@ -350,6 +373,10 @@ ActiveRecord::Schema.define(:version => 20140717212927) do
     t.integer  "gun_sheet_id"
     t.integer  "load_sheet_id"
     t.text     "comments"
+    t.decimal  "yellow_dip_start", :default => 0.0
+    t.decimal  "yellow_dip_end",   :default => 0.0
+    t.decimal  "white_dip_start",  :default => 0.0
+    t.decimal  "white_dip_end",    :default => 0.0
   end
 
   create_table "materials", :force => true do |t|

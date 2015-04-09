@@ -14,6 +14,10 @@
 
 <p>A user can only be assigned to a one crew at a time. Assignment decides what jobs the user can view, and populates the Clock In / Clock Out forms.</p>
 
+<%= link_to "Show general Calendar", calendar_private_crews_path %>
+<br>
+<br>
+
 <p id="new"></p>
 
 <%= render :partial => 'crews_table', :locals => {:crews => @crews} %>

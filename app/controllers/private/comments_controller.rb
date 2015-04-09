@@ -2,7 +2,7 @@ class Private::CommentsController < ApplicationController
   filter_access_to :all
 
   def create
-    comment = Comment.new params[:comment]
+    comment = current_user.comments.new params[:comment]
 
     if comment.save
       flash[:success] = "Comment saved"
@@ -12,5 +12,4 @@ class Private::CommentsController < ApplicationController
 
     redirect_to :back
   end
-
 end
