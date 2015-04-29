@@ -22,10 +22,14 @@ class Private::JobEstimatesController < ApplicationController
 
   def create
     @job_estimate = JobEstimate.new(params[:job_estimate])
-
     @page_title = "New Job Estimate"
 
     if @job_estimate.save
+      if params[:save_and_send]
+        @job_estimate.emails.split(',').each do |email|
+          SiteMailer.delay.send_job_estimate_notice(@job_estimate, email)
+        end
+      end
       flash[:notice] = "Job Estimate created!"
       redirect_to private_job_estimates_path
     else
@@ -47,6 +51,11 @@ class Private::JobEstimatesController < ApplicationController
     @page_title = "Edit Job Estimate"
 
     if @job_estimate.update_attributes(params[:job_estimate])
+      if params[:save_and_send]
+        @job_estimate.emails.split(',').each do |email|
+          SiteMailer.delay.send_job_estimate_notice(@job_estimate, email)
+        end
+      end
       flash[:notice] = "Job Estimate updated!"
       redirect_to private_job_estimate_path(@job_estimate)
     else

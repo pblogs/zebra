@@ -15,7 +15,7 @@ jQuery(function () {
 
   jQuery(".job_estimate").nestedFields({
     itemSelector: ".item",
-    containerSelector: "tbody",
+    containerSelector: "tbody.nested_form",
     afterInsert: function(item) {
       jQuery('tr.item input').change(function(event) {
         updateTable();
