@@ -70,4 +70,25 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate.destroy
     redirect_to private_job_estimates_path
   end
+
+  def collect_emails
+    client = Client.find_by_name(params[:client_name])
+    emails = ''
+    if client
+      i = 0
+      client.client_contacts.each do |contact|
+        i += 1
+        emails << ', ' unless i == 1
+        emails << "#{contact.email}"
+      end
+    end
+
+    puts emails
+
+    respond_to do |format|
+      format.json  {
+        render json: { emails: emails}
+      }
+    end
+  end
 end
