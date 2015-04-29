@@ -1,10 +1,6 @@
 <tr class="item">
   <td class="title">
-
-      <%= f.select :title,
-                   @materials.map { |m| m.manufacturer.try(:name) },
-                   { include_blank: true },
-                   { class: 'chosen-select span-7' } %>
+    <%= f.text_field :title, data: {autocomplete: @materials.map { |m| m.manufacturer.try(:name) }}, class: "span-7 autocomplete" %>
   </td>
   <td class="quantity">
     <%= f.number_field :quantity, class: "form-control", min: 0 %>

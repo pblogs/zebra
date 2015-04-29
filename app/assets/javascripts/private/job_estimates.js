@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
   updateTable();
-  chosenSelect();
+  chosenAutocomplete();
   jQuery('tr.item input').change(function(event) {
     updateTable();
   });
@@ -20,7 +20,7 @@ jQuery(function () {
       jQuery('tr.item input').change(function(event) {
         updateTable();
       });
-      chosenSelect();
+      chosenAutocomplete();
     },
 
     afterRemove: function(item) {
@@ -30,10 +30,10 @@ jQuery(function () {
   });
 });
 
-function chosenSelect() {
-  jQuery('.chosen-select').chosen({
-    allow_single_deselect: true,
-    no_results_text: 'No results matched'
+function chosenAutocomplete() {
+  jQuery('.autocomplete').autocomplete({
+    source: jQuery('.autocomplete').data("autocomplete"),
+    minLength: 3
   });
 }
 
