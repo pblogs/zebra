@@ -65,4 +65,9 @@ class SiteMailer < ActionMailer::Base
     @job = job
     mail(to: job.reminder_email, subject: "[AAAS] Reminder Notice")
   end
+
+  def send_job_estimate_notice(job_estimate, email)
+    @job_estimate = job_estimate
+    mail(to: email, subject: "[AAAS] Job Estimate notice")
+  end
 end

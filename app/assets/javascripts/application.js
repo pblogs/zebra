@@ -19,7 +19,6 @@
 //= require jquery_ujs
 //= require fullcalendar
 //= require jquery.nested-fields
-//= require chosen-jquery
 //= require bootstrap/modal
 //= require_self
 //= require_tree ./base

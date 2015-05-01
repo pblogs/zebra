@@ -19,8 +19,9 @@
     <%= form_for @job_estimate, url: private_job_estimate_path(@job_estimate), html: {multipart: true, method: :put, class: 'job_estimate'} do |f| %>
       <%= f.error_messages %>
       <%= render partial: "form", object: f %>
-      <%= f.submit "Update Job Estimate", class: 'btn btn-primary' %> or
-      <%= link_to 'Cancel', private_job_estimate_path(@job_estimate), class: 'btn btn-default' %>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+      <%= f.submit "Save & Send", name: 'save_and_send', class: 'btn btn-primary' %>
+      or <%= link_to 'Cancel', private_job_estimate_path(@job_estimate), class: 'btn btn-default' %>
     <% end %>
   </div>
 </div>

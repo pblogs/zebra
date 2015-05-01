@@ -5,7 +5,8 @@
   </div>
 <% end %>
 
-<div class="container">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
   <%= content_for :breadcrumb do %>
     <ul id="breadcrumb">
       <li><%= link_to 'Dashboard', private_home_path %></li>
@@ -35,14 +36,6 @@
       <td><%= @job_estimate.emails %></td>
     </tr>
     <tr>
-      <th class="col-md-2">Client notes</th>
-      <td><%= simple_format @job_estimate.client_notes %></td>
-    </tr>
-    <tr>
-      <th class="col-md-2">Terms and Conditions</th>
-      <td><%= simple_format @job_estimate.terms_and_conditions %></td>
-    </tr>
-    <tr>
       <th class="col-md-2">Estimate Date</th>
       <td><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></td>
     </tr>
@@ -50,27 +43,46 @@
       <th class="col-md-2">Expiry Date</th>
       <td><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></td>
     </tr>
-    <tr>
-      <th class="col-md-2">Total amount</th>
-      <td><%= @job_estimate.total_amount %></td>
-    </tr>
   </table>
 
   <h2>Item Details</h2>
   <table class='table table-hover'>
     <tr>
-      <th class='col-md-2'>Title</th>
-      <th class='col-md-2'>Quantity</th>
-      <th class='col-md-2'>Price</th>
-      <th class='col-md-2'>Total Price</th>
+      <th class='col-md-9'>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Total Price</th>
     </tr>
     <% @job_estimate.estimate_items.each do |item| %>
       <tr>
         <td><%= item.title %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.price %></td>
-        <td><%= item.total_price %></td>
+        <td class="center"><%= item.quantity %></td>
+        <td class="center"><%= item.price %></td>
+        <td class="right"><%= item.total_price %></td>
       </tr>
     <% end %>
+    <tr>
+      <td colspan="2" class="right">Sub Total</td>
+      <td colspan="2" class="right"><%= @job_estimate.sub_total_amount %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="right">Discount(<%= @job_estimate.discount %>%)</td>
+      <td colspan="2" class="right"> -<%= @job_estimate.sub_total_amount * @job_estimate.discount / 100 %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="right">Shipping Charge</td>
+      <td colspan="2" class="right"><%= @job_estimate.shipping_charges %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="right">Total</td>
+      <td colspan="2" class="right"><%= @job_estimate.total_amount %></td>
+    </tr>
   </table>
+  <p>Notes</p>
+  <div><%=simple_format @job_estimate.client_notes %></div>
+
+  <p>Terms & Conditions</p>
+  <div><%=simple_format @job_estimate.terms_and_conditions %></div>
+
+  </div>
 </div>

@@ -51,7 +51,6 @@ gem 'fullcalendar-rails'
 gem 'active_model_serializers'
 gem 'jquery-minicolors-rails'
 gem 'bootstrap-sass', '3.1.1.0'
-gem 'chosen-rails'
 
 #for heroku
 gem 'rails_log_stdout'
