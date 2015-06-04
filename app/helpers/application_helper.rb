@@ -61,6 +61,6 @@ module ApplicationHelper
 
   def settings
     settings = Setting.first
-    settings.present? ? settings.terms_and_conditions : ''
+    settings.present? ? settings : ''
   end
 end

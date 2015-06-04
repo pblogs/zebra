@@ -466,7 +466,18 @@ ActiveRecord::Schema.define(:version => 20150604124513) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "settings", :force => true do |t|
+    t.string   "company_name"
+    t.string   "city"
+    t.string   "address"
+    t.string   "postal_code"
+    t.string   "state"
+    t.string   "phone"
+    t.string   "fax"
     t.text     "terms_and_conditions"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end

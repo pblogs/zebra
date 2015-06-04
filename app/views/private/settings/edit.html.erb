@@ -8,11 +8,43 @@
       </ul>
     <% end %>
 
-    <%= form_for @setting, url: private_setting_path(@setting), html: {method: :put, class: 'settings'} do |f| %>
+    <%= form_for @setting, url: private_setting_path(@setting), html: {multipart: true, method: :put, class: 'settings'} do |f| %>
       <%= f.error_messages %>
+      <div class="form-group">
+        <%= f.label :company_name %><br>
+        <%= f.text_field :company_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :city %><br>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :address %><br>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :postal_code %><br>
+        <%= f.text_field :postal_code, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :state %><br>
+        <%= f.text_field :state, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone %><br>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :fax %><br>
+        <%= f.text_field :fax, class: "form-control" %>
+      </div>
       <div class="form-group">
         <%= f.label :terms_and_conditions %><br>
         <%= f.text_area :terms_and_conditions, class: 'form-control', rows: 10 %>
+      </div>
+      <div class="form-group">
+        <%= f.label :logo %><br>
+        <%= f.file_field :logo, class: 'form-control' %>
       </div>
       <%= f.submit "Update Settings", class: 'btn btn-success' %>
       or <%= link_to 'Cancel', private_settings_path, class: 'btn btn-default' %>
