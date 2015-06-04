@@ -120,7 +120,7 @@
         <div style="display:table;width:100%;">
           <div style="float:left;width:50%;">
             <div>
-              <img id="logo_content" style="width:240.00px;height:240.00px;" src="https://invoice.zoho.com/InvoiceLogo.zbfs?organization_id=51519551">
+              <%= image_tag(@setting.logo.url(:small), class: 'logo_content') if @setting.logo.present? %>
             </div>
             <span class="est-orgname"><b><%= settings.company_name %></b></span><br>
             <span class="est-label">
