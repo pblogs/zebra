@@ -1,0 +1,15 @@
+<% if permitted_to? :edit, :private_settings -%>
+  <div class="show_actions"><%= active_link_to 'Edit App Settings', edit_private_setting_path(@setting), class: "btn btn-warning" %></div>
+<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= content_for :breadcrumb do %>
+      <ul id="breadcrumb">
+        <li><%= link_to 'Dashboard', private_home_path %></li>
+        <li>»</li>
+        <li><%= @page_title %></li>
+      </ul>
+    <% end %>
+    <p><%= @setting.terms_and_conditions %></p>
+  </div>
+</div>

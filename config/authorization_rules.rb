@@ -10,7 +10,7 @@ authorization do
     description "+ Can view markings value, can manage time sheets"
     includes :office
     includes :foreman
-    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets], :to => :manage
+    has_permission_on [:private_time_sheets, :private_gun_sheets, :private_load_sheets, :private_settings], :to => :manage
 
     has_permission_on [:private_report_summaries], :to => [:all_job_value, :all_marking_value]
     has_permission_on [:private_job_estimates], to: [:manage, :collect_emails, :delete_document]

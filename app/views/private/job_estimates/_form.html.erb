@@ -88,5 +88,5 @@
 </div>
 <div class="form-group">
   <%= form.label :terms_and_conditions %><br>
-  <%= form.text_area :terms_and_conditions, class: 'form-control', rows: 10 %>
+  <%= form.text_area :terms_and_conditions, value: form.object.new_record? ? settings : @job_estimate.terms_and_conditions, class: 'form-control', rows: 10 %>
 </div>
