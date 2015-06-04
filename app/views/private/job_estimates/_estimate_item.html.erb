@@ -1,6 +1,6 @@
 <tr class="item">
   <td class="title">
-    <%= f.text_field :title, data: {autocomplete: @materials.map { |m| m.manufacturer.try(:name) }.uniq}, class: "span-7 autocomplete" %>
+    <%= f.text_field :title, data: {autocomplete: @gun_marking_categories.map { |cat| cat.name }.uniq}, class: "span-7 autocomplete" %>
   </td>
   <td class="quantity">
     <%= f.number_field :quantity, class: "form-control", min: 0 %>

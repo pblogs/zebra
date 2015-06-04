@@ -17,7 +17,7 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate = JobEstimate.new
     @page_title = "New Job Estimate"
     @clients = Client.order(:name)
-    @materials = Material.active.includes(:manufacturer)
+    @gun_marking_categories = GunMarkingCategory.all
   end
 
   def create
@@ -34,7 +34,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimates_path
     else
       @clients = Client.order(:name)
-      @materials = Material.active.includes(:manufacturer)
+      @gun_marking_categories = GunMarkingCategory.all
       render action: :new
     end
   end
@@ -43,7 +43,7 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Edit Job Estimate"
     @clients = Client.order(:name)
-    @materials = Material.active.includes(:manufacturer)
+    @gun_marking_categories = GunMarkingCategory.all
   end
 
   def update
@@ -60,7 +60,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimate_path(@job_estimate)
     else
       @clients = Client.order(:name)
-      @materials = Material.active.includes(:manufacturer)
+      @gun_marking_categories = GunMarkingCategory.all
       render action: :edit
     end
   end
