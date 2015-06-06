@@ -11,6 +11,13 @@ class Private::JobEstimatesController < ApplicationController
   def show
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Show Job Estimate"
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "job_estimates", layout: 'pdf.html.erb'   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def new
