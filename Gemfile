@@ -25,7 +25,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'quiet_assets',     '>= 1.0.1'
-  gem 'heroku'
   gem 'thin'
 end
 
@@ -57,8 +56,7 @@ gem 'rails_log_stdout'
 # gem 'rails3_serve_static_assets'
 gem 'rails_12factor'
 gem 'heroku'
-gem 'thin'
-
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
