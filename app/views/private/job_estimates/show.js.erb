@@ -1,0 +1,4 @@
+// window.history.pushState('private_job_estimates_url', 'job estimate opened', '?estimate=<%= @job_estimate.id %>')
+jQuery('div.preview_estimate').fadeOut('fast')
+jQuery('div.preview_estimate').html('<%= j(render(@job_estimate)) %>')
+jQuery('div.preview_estimate').fadeIn('fast')

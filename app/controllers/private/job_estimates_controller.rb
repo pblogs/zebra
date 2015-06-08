@@ -14,6 +14,7 @@ class Private::JobEstimatesController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.js
       format.pdf do
         render pdf: "job_estimates", layout: 'pdf.html.erb'   # Excluding ".pdf" extension.
       end

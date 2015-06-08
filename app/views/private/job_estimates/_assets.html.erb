@@ -1,0 +1,7 @@
+<%  @job_estimate.assets.each do  |a| %>
+  <%= fa_icon('paperclip') %>
+  <%= link_to a.image_file_name, a.image.url %>&nbsp;&nbsp;
+  <%= link_to fa_icon('trash'), private_asset_path(a), method: :destroy, data: {confirm: 'Are you sure?'}, title: 'Delete' %>
+<% end %>
+<br>
+<small>Will not be attached while emailing</small>

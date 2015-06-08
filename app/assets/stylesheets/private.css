@@ -135,8 +135,6 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 /* tables */
 table { }
 th { background: #333; color: #fff; font-weight: normal; }
-td { border-right: solid 1px #ccc; border-bottom: solid 1px #ccc; ;}
-td.actions { border-right: none; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
 table.sortable tr:hover { background: #FEEA86; }
@@ -157,7 +155,6 @@ th.center { padding: 2px 2px 2px 4px;}
 /* controls */
 #new { float: right; margin: -25px 0 0 0; }
 #new a { color: #529214; margin: 0; display: block; border: none; }
-.actions { padding: 0; min-width: 130px; }
 .edit, .delete, .show { margin: 0; border: none; font-weight: normal; padding: 0 4px; }
 .edit:hover, .delete:hover, .show:hover { text-decoration: none; color: #fff; }
 .edit { color: #941494; }

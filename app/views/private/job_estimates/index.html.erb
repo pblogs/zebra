@@ -13,27 +13,31 @@
 
 <hr>
 
-<table class="table table-hover">
-  <tr>
-    <th class="center number">#</th>
-    <th class="nosort">Client</th>
-    <th class="center">Reference</th>
-    <th class="center">Estimate Date</th>
-    <th class="center">Expiry Date</th>
-    <th class="actions nosort"></th>
-  </tr>
-  <% @job_estimates.each do |estimate| %>
-    <tr>
-      <td><%= estimate.id %></td>
-      <td><%= estimate.name_client %></td>
-      <td><%= estimate.reference %></td>
-      <td><%= estimate.estimate_date %></td>
-      <td><%= estimate.expiry_date %></td>
-      <td class="actions">
-        <%= link_to "Delete", private_job_estimate_path(estimate), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "delete" %>
-        <%= link_to "Edit", edit_private_job_estimate_path(estimate), class: "edit" %>
-        <%= link_to "Show", private_job_estimate_path(estimate), class: "show" %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <table class="table table-hover">
+      <tr>
+        <th class="center number">#</th>
+        <th class="nosort">Client</th>
+        <th class="center">Estimate</th>
+        <th class="center">Status</th>
+        <th class="center">Amount</th>
+        <!-- <th class="center">Estimate Date</th> -->
+        <!-- <th class="center">Expiry Date</th> -->
+      </tr>
+      <% @job_estimates.each do |estimate| %>
+        <tr>
+          <td><%= estimate.id %></td>
+          <td><%= estimate.name_client %></td>
+          <td><%= link_to estimate.estimate,  private_job_estimate_path(estimate), remote: true %></td>
+          <td><%= JobEstimate::STATE[estimate.state] %></td>
+          <td><%= number_to_currency estimate.total_amount %></td>
+          <!-- <td><%#= estimate.expiry_date %></td> -->
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-8 preview_estimate" style='display:none;'></div>
+</div>
+
+

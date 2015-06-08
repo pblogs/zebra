@@ -1,4 +1,3 @@
-<hr>
 <% if permitted_to?(:edit, :private_job_estimates) and !in_mobile_view? %>
   <div class="btn-group noprint" role="group" aria-label="...">
     <%= link_to fa_icon('pencil'), edit_private_job_estimate_path(@job_estimate.id), class: "btn btn-default" %>
@@ -10,22 +9,22 @@
 <% end %>
 <hr>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 preview_estimate">
-  <%= render partial: 'one' %>
-  <%= render 'assets' %>
-  <%= content_for :breadcrumb do %>
-    <ul id="breadcrumb" class="noprint">
-      <li><%= link_to 'Dashboard', private_home_path %></li>
-      <li>»</li>
-      <li><%= link_to 'Job Estimates', private_job_estimates_path %></li>
-      <li>»</li>
-      <li><%= @page_title %></li>
-    </ul>
-  <% end %>
-  <%= content_for :submenu do %>
-    <% if permitted_to? :create, :private_job_estimates -%>
-      <li><%= active_link_to 'New Job Estimate', new_private_job_estimate_path %></li>
+  <div class="col-md-8 col-md-offset-2">
+    <%= render partial: 'one' %>
+    <%= render 'assets' %>
+    <%= content_for :breadcrumb do %>
+      <ul id="breadcrumb" class="noprint">
+        <li><%= link_to 'Dashboard', private_home_path %></li>
+        <li>»</li>
+        <li><%= link_to 'Job Estimates', private_job_estimates_path %></li>
+        <li>»</li>
+        <li><%= @page_title %></li>
+      </ul>
     <% end %>
-  <% end %>
+    <%= content_for :submenu do %>
+      <% if permitted_to? :create, :private_job_estimates -%>
+        <li><%= active_link_to 'New Job Estimate', new_private_job_estimate_path %></li>
+      <% end %>
+    <% end %>
   </div>
 </div>
