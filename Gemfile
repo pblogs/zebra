@@ -25,7 +25,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'quiet_assets',     '>= 1.0.1'
-  gem 'thin'
 end
 
 gem 'stringex'
@@ -44,6 +43,7 @@ gem 'wicked'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'figaro'
+gem 'thin'
 
 gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
