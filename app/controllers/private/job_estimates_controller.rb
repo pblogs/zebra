@@ -94,9 +94,9 @@ class Private::JobEstimatesController < ApplicationController
     puts emails
 
     respond_to do |format|
-      format.json  {
-        render json: { emails: emails}
-      }
+      format.json  do
+        render json: { emails: emails }
+      end
     end
   end
 
@@ -106,6 +106,20 @@ class Private::JobEstimatesController < ApplicationController
     document.destroy
 
     flash[:notice] = 'Document deleted!'
-    redirect_to  private_job_estimate_path(@job_estimate)
+    redirect_to private_job_estimate_path(@job_estimate)
+  end
+
+  def mark_invoice
+    @job_estimate = JobEstimate.find(params[:id])
+    @job_estimate.update_attributes(
+      state: JobEstimate::STATE.invert[params[:status]]
+    ) if JobEstimate::STATE.values.include?(params[:status])
+
+    respond_to do |format|
+      format.html do
+        redirect_to :back
+      end
+      format.js
+    end
   end
 end

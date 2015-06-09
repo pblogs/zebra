@@ -49,6 +49,9 @@ AaaStriping::Application.routes.draw do
     resources :job_estimates do
       get :collect_emails, on: :collection
       get :delete_document, on: :member
+      member do
+        put :mark_invoice
+      end
     end
     resources :settings
 

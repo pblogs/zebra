@@ -2,10 +2,24 @@
   <div class="btn-group noprint" role="group" aria-label="...">
     <%= link_to fa_icon('pencil'), edit_private_job_estimate_path(@job_estimate.id), class: "btn btn-default" %>
     <%= link_to fa_icon('print'), private_job_estimate_path(@job_estimate.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
-    <%= link_to fa_icon("trash-o"), private_job_estimate_path(@job_estimate.id), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "btn btn-danger" %>
+    <%= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
   </div>
 
-  <%= link_to 'Convert to invoice', '#', class: 'btn btn-default' %>
+  <%= link_to 'Convert to invoice', '#', class: 'btn btn-danger' %>
+
+  <div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      More...
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <li role="presentation"><%= link_to 'Mark as accepted', mark_invoice_private_job_estimate_path(@job_estimate.id, status: 'Accepted'), method: :put %></li>
+      <li role="presentation"><%= link_to 'Mark as declined', mark_invoice_private_job_estimate_path(@job_estimate.id, status: 'Declined'), method: :put %></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><%= link_to 'Delete', private_job_estimate_path(@job_estimate.id), confirm: 'Are you sure? This cannot be undone!', method: :delete %></li>
+    </ul>
+  </div>
+
 <% end %>
 <hr>
 <div class="row">

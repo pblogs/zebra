@@ -135,6 +135,16 @@ table.estimate-no-border tr td {
   position: absolute;
   top: 19px; left: -21px;
 }
+
+.ribbon.accepted span{
+  background: linear-gradient(#63C35C 0%, rgb(7, 82, 19) 100%);
+}
+
+.ribbon.declined span{
+   background: linear-gradient(#D2603F 0%, rgb(207, 6, 6) 100%);
+}
+
+
 .ribbon span::before {
   content: "";
   position: absolute; left: 0px; top: 100%;

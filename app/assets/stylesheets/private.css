@@ -113,7 +113,7 @@ button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
 button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 *:first-child+html button[type] { padding:4px 10px 3px 7px; }
 button img, a.button img { margin:0 3px -3px 0 !important; padding:0; border:none; width:16px; height:16px; float:none; }
-input.button:hover, button:hover, a.button:hover{ background-color:#dff4ff; border:1px solid #c2e1ef; color:#336699; }
+/*input.button:hover, button:hover, a.button:hover{ background-color:#dff4ff; border:1px solid #c2e1ef; color:#336699; }*/
 a.button:active { background-color:#6299c5; border:1px solid #6299c5; color:#fff; }
 body .positive { color:#529214; border-color: #529214; background-color:#E6EFC2;}
 body .negative { color:#d12f19; border-color: #d12f19; }

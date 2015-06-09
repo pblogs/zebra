@@ -1,5 +1,5 @@
 <div class="details-container clearfix">
-  <div class="ribbon"><span><%= JobEstimate::STATE[@job_estimate.state] %></span></div>
+  <div class="ribbon <%= JobEstimate::STATE[@job_estimate.state].downcase %>"><span><%= JobEstimate::STATE[@job_estimate.state] %></span></div>
   <div>
     <div class="estimate">
       <div class="estimate-header estimate-content">
