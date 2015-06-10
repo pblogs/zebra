@@ -10,4 +10,15 @@ class JobEstimate < ActiveRecord::Base
     3 => 'Declined',
     4 => 'Sent'
   }
+
+  def mark_as_declined
+    state = 3
+    save
+  end
+
+  def mark_as_accepted
+
+    state = 2
+    save
+  end
 end

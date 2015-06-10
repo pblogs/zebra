@@ -4,13 +4,14 @@
     margin-bottom: 35px;
     -webkit-box-shadow: 0 0 6px #ccc;
     box-shadow: 0 0 6px #ccc;
+    font-family: sans-serif;
 }
 
 .estimate {
-    font-family: Open Sans;
     font-size: 9pt;
     color: #333333;
     background: #ffffff;
+    font-family: Open Sans;
 }
 
 .estimate-body {
@@ -32,6 +33,7 @@
 .est-entity-title {
     font-size: 28pt;
     color: #000000;
+    font-family: sans-serif;
 }
 
 .est-orgname {

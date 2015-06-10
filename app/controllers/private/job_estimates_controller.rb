@@ -111,9 +111,7 @@ class Private::JobEstimatesController < ApplicationController
 
   def mark_invoice
     @job_estimate = JobEstimate.find(params[:id])
-    @job_estimate.update_attributes(
-      state: JobEstimate::STATE.invert[params[:status]]
-    ) if JobEstimate::STATE.values.include?(params[:status])
+    @job_estimate.send("mark_as_#{params[:status].downcase}") if JobEstimate::STATE.values.include?(params[:status])
 
     respond_to do |format|
       format.html do

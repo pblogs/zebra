@@ -26,13 +26,11 @@
         </div>
 
         <table style="width:100%;margin-top:30px;table-layout:fixed;" class="estimate-no-border">
-
           <tr>
             <td style="width:60%;vertical-align:bottom;word-wrap: break-word; border: none;">
               <div><label class="est-label" id="tmp_billing_address_label" style="font-size: 10pt;">Bill To</label>
                 <br>
-                <span id="zb-pdf-customer-detail" class="est-customer-name"><a><%= @job_estimate.name_client %> </a></span><br>
-
+                <span id="zb-pdf-customer-detail" class="est-customer-name"><%= @job_estimate.name_client %></span><br>
               </div>
             </td>
             <td style="vertical-align:bottom;width: 40%;" align="right">
@@ -62,15 +60,11 @@
                       <span id="tmp_ref_number"><%= @job_estimate.reference %></span>
                     </td>
                   </tr>
-
                 </tbody>
               </table>
             </td>
           </tr>
-
         </table>
-
-
         <table cellpadding="0" cellspacing="0" border="0" class="est-itemtable estimate-no-border" style="width:100%;margin-top:20px;table-layout:fixed;">
           <thead>
             <tr style="height:32px;">
@@ -151,22 +145,14 @@
           </div>
           <div style="clear:both;margin-top:50px;width:100%;">
             <label class="est-label" id="tmp_notes_label" style="font-size: 10pt;">Notes</label><br>
-
             <p class="est-notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.client_notes %></p>
           </div>
-
           <div style="clear:both;margin-top:30px;width:100%;">
             <label class="est-label" id="tmp_terms_label" style="font-size: 10pt;">Terms &amp; Conditions</label><br>
-
             <p class="est-terms" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.terms_and_conditions %></p>
           </div>
         </div>
-        <div class="estimate-footer">
-          <div>
-
-          </div>
-        </div>
-
+        <div class="estimate-footer"></div>
       </div>
     </div>
   </div>
