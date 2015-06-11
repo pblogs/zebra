@@ -10,6 +10,12 @@ class GunMarkingCategory < ActiveRecord::Base
   # Named scopes are deprecated
   #named_scope :categories_for_group, lambda { |group_id| { :conditions => ['gun_marking_group_id = ?', group_id]}}
 
+  before_save :strip_name
+
+  def strip_name
+    self.name = self.name.strip
+  end
+
   def total_value
     self.job_markings.collect{|m| m.total_value_if_active}.sum
   end

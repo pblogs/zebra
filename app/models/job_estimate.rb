@@ -30,10 +30,10 @@ class JobEstimate < ActiveRecord::Base
 
     if job.save
       estimate_items.each do |est|
-        gun_mark_id = GunMarkingCategory.where(name: est.title).first
-        return unless gun_mark_id.present?
+        gun_mark = GunMarkingCategory.where(name: est.title).first
+        return unless gun_mark.present?
         job.job_markings.new(
-          gun_marking_category_id: gun_mark_id,
+          gun_marking_category_id: gun_mark.id,
           amount: est.quantity,
           rate: est.price
         ).save(validate: false)
