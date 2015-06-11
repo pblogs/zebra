@@ -3,6 +3,7 @@ class GunMarkingCategory < ActiveRecord::Base
   has_many :gun_markings
   has_many :job_markings
   belongs_to :gun_marking_group
+  validates_uniqueness_of :name
 
   scope :categories_for_group, lambda { |group_id| where(:gun_marking_group_id => group_id) }
 

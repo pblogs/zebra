@@ -25,6 +25,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'quiet_assets',     '>= 1.0.1'
+
+  # pry awesomeness
+  gem 'pry-rails', group: :development
+  gem 'pry-stack_explorer', group: :development
 end
 
 gem 'stringex'
