@@ -1,0 +1,48 @@
+<%= content_for :breadcrumb do %>
+  <ul id="breadcrumb">
+    <li><%= link_to 'Dashboard', private_home_path %></li>
+    <li>»</li>
+    <li><%= @page_title %></li>
+  </ul>
+<% end %>
+<%= content_for :submenu do %>
+  <% if permitted_to? :create, :private_job_estimates -%>
+    <li><%= active_link_to 'New Invioice', new_private_invoice_path %></li>
+  <% end %>
+<% end %>
+
+<hr>
+
+<div class="col-md-12">
+  <div class="estimate_listing col-md-12">
+    <table class="table table-hover" id='#datatable'>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Invoice number#</th>
+        <th>Order number#</th>
+        <th>Customer Name</th>
+        <th>Status</th>
+        <th>Amount</th>
+      </tr>
+      <% @invoices.each do |inv| %>
+        <tr>
+          <td><%= inv.id %></td>
+          <td><%= inv.created_at.strftime('%d %b %Y') %></td>
+          <td><%= link_to inv.invoice_number,  private_invoice_path(inv), remote: true %></td>
+          <td><%= inv.order_number %></td>
+          <td><%= inv.customer_name %></td>
+          <td class="<%= Invoice::STATUS[inv.status].downcase %>"><%= Invoice::STATUS[inv.status] %></td>
+          <td><%= number_to_currency inv.amount %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-8 preview_estimate" style='display:none;'></div>
+</div>
+<script type="text/javascript">
+  jQuery('.estimate_listing a').click(function(event) {
+    jQuery('tr.selected').removeClass('selected')
+    jQuery(this).parent().closest('tr').addClass('selected')
+  });
+</script>

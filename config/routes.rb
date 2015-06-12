@@ -46,6 +46,7 @@ AaaStriping::Application.routes.draw do
     resources :daily_reports
     resources :time_note_categories
     resources :time_task_categories
+    resources :invoices
     resources :job_estimates do
       get :collect_emails, on: :collection
       get :delete_document, on: :member
