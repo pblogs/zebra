@@ -21,8 +21,8 @@
             </span>
           </div>
           <div id="div_1bbd_2">
-            <span class="est-entity-title">ESTIMATE</span><br>
-            <span class="est-label"  id="tmp_entity_number"><b><%= @job_estimate.estimate %></b></span>
+            <span class="est-entity-title">INVOICE</span><br>
+            <span class="est-label"  id="tmp_entity_number"><b><%= @invoice.invoice_number %></b></span>
           </div>
         </div>
 
@@ -31,7 +31,7 @@
             <td id="td_1bbd_0">
               <div><label class="est-label" id="tmp_billing_address_label" >Bill To</label>
                 <br>
-                <span id="zb-pdf-customer-detail" class="est-customer-name"><%= @job_estimate.name_client %></span><br>
+                <span id="zb-pdf-customer-detail" class="est-customer-name"><%= @invoice.customer_name %></span><br>
               </div>
             </td>
             <td id="td_1bbd_1" align="right">
@@ -42,7 +42,7 @@
                       <span class="est-label">Estimate Date :</span>
                     </td>
                     <td id="td_1bbd_3">
-                      <span id="tmp_entity_date"><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></span>
+                      <span id="tmp_entity_date"><%= @invoice.invoice_date ? @invoice.invoice_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></span>
                     </td>
                   </tr>
                   <tr>
@@ -50,7 +50,7 @@
                       <span class="est-label">Expiry Date :</span>
                     </td>
                     <td id="td_1bbd_5">
-                      <span id="tmp_due_date"><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></span>
+                      <span id="tmp_due_date"><%= @invoice.due_date ? @invoice.due_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></span>
                     </td>
                   </tr>
                   <tr>
@@ -58,7 +58,7 @@
                       <span class="est-label">Reference# :</span>
                     </td>
                     <td id="td_1bbd_7">
-                      <span id="tmp_ref_number"><%= @job_estimate.reference %></span>
+                      <span id="tmp_ref_number"><%= @invoice.order_number %></span>
                     </td>
                   </tr>
                 </tbody>
@@ -87,23 +87,23 @@
             </tr>
           </thead>
           <tbody class="itemBody">
-            <% @job_estimate.estimate_items.each_with_index do |item, index| %>
+            <%# @invoice.estimate_items.each_with_index do |item, index| %>
             <tr>
-              <td class="est-item-row" id="td_1bbd_13" valign="top"><%= index + 1 %></td>
+              <td class="est-item-row" id="td_1bbd_13" valign="top"><%#= index + 1 %></td>
               <td class="est-item-row" id="td_1bbd_14" valign="top">
-                <span class="est-item-desc" id="span_1bbd_0"><%= item.title %></span>
+                <span class="est-item-desc" id="span_1bbd_0"><%#= item.title %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_15" valign="top">
-                <span><%= item.quantity %></span>
+                <span><%#= item.quantity %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_16" valign="top">
-                <span><%= item.price %></span>
+                <span><%#= item.price %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_17" valign="top">
-                <span><%= item.total_price %></span>
+                <span><%#= item.total_price %></span>
               </td>
             </tr>
-            <% end %>
+            <%# end %>
           </tbody>
         </table>
         <div id="div_1bbd_3">
@@ -115,24 +115,24 @@
               <tbody>
                 <tr>
                   <td id="td_1bbd_18" valign="middle">Sub Total</td>
-                  <td  valign="middle" id="tmp_subtotal"><%= @job_estimate.sub_total_amount %></td>
+                  <td  valign="middle" id="tmp_subtotal"><%#= @invoice.sub_total_amount %></td>
                 </tr>
                 <tr>
-                  <td id="td_1bbd_19" valign="middle">Discount(<%= @job_estimate.discount %>%)
+                  <td id="td_1bbd_19" valign="middle">Discount(<%#= @invoice.discount %>%)
                   </td>
                   <td id="td_1bbd_20" valign="middle">
-                    (-) <%= @job_estimate.sub_total_amount * @job_estimate.discount / 100 %>
+                    (-) <%#= @invoice.sub_total_amount * @invoice.discount / 100 %>
                   </td>
                 </tr>
                 <tr id="tr_1bbd_1">
                   <td id="td_1bbd_21" valign="middle">Shipping charge</td>
-                  <td id="td_1bbd_22" valign="middle"><%= @job_estimate.shipping_charges %></td>
+                  <td id="td_1bbd_22" valign="middle"><%#= @invoice.shipping_charges %></td>
                 </tr>
 
                 <tr class="est-balance" id="tr_1bbd_2">
                   <td id="td_1bbd_23" valign="middle"><b>Total</b></td>
                   <td  valign="middle" id="tmp_total">
-                    <b> <%= number_to_currency(@job_estimate.total_amount) %></b></td>
+                    <b> <%= number_to_currency(@invoice.amount) %></b></td>
                   </tr>
                 </tbody>
               </table>
@@ -143,13 +143,13 @@
           <div id="div_1bbd_8">
             <label class="est-label" id="tmp_notes_label" >Notes</label><br>
             <div class="est-notes" id="p_1bbd_0">
-              <%=simple_format @job_estimate.client_notes %>
+              <%=simple_format @invoice.customer_notes %>
             </div>
           </div>
           <div id="div_1bbd_9">
             <label class="est-label" id="tmp_terms_label" >Terms &amp; Conditions</label><br>
             <div class="est-terms" id="p_1bbd_1">
-              <%=simple_format @job_estimate.terms_and_conditions %>
+              <%=simple_format @invoice.terms_and_cond %>
             </div>
           </div>
         </div>
