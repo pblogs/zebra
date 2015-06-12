@@ -12,40 +12,40 @@ class Private::InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @page_title = "Invoice  ##{@invoice.invoice_number}"
 
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    #   format.pdf do
-    #     render pdf: 'invoices', layout: 'pdf.html.erb'
-    #   end
-    # end
+    respond_to do |format|
+      format.html
+      format.js
+      format.pdf do
+        render pdf: 'invoices', layout: 'pdf.html.erb'
+      end
+    end
   end
 
-  # def new
-  #   @job_estimate = JobEstimate.new
-  #   @page_title = "New Job Estimate"
-  #   @clients = Client.order(:name)
-  #   @gun_marking_categories = GunMarkingCategory.all
-  # end
+  def new
+    @invoice = Invoice.new
+    @page_title = "New Invoice"
+    @clients = Client.order(:name)
+    @gun_marking_categories = GunMarkingCategory.all
+  end
 
-  # def create
-  #   @job_estimate = JobEstimate.new(params[:job_estimate])
-  #   @page_title = "New Job Estimate"
+  def create
+    @invoice = Invoice.new(params[:invoice])
+    @page_title = "New Job Estimate"
 
-  #   if @job_estimate.save
-  #     if params[:save_and_send]
-  #       @job_estimate.emails.split(',').each do |email|
-  #         SiteMailer.delay.send_job_estimate_notice(@job_estimate, email)
-  #       end
-  #     end
-  #     flash[:notice] = "Job Estimate created!"
-  #     redirect_to private_job_estimates_path
-  #   else
-  #     @clients = Client.order(:name)
-  #     @gun_marking_categories = GunMarkingCategory.all
-  #     render action: :new
-  #   end
-  # end
+    if @invoice.save
+      if params[:save_and_send]
+        @invoice.emails.split(',').each do |email|
+          SiteMailer.delay.send_invoice_notice(@invoice, email)
+        end
+      end
+      flash[:notice] = "Job Estimate created!"
+      redirect_to private_invoices_path
+    else
+      @clients = Client.order(:name)
+      @gun_marking_categories = GunMarkingCategory.all
+      render action: :new
+    end
+  end
 
   # def edit
   #   @job_estimate = JobEstimate.find(params[:id])

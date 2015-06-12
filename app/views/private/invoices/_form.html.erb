@@ -1,15 +1,18 @@
 <div class="form-group">
-  <%= form.label :name_client %><br>
-  <%= form.text_field :name_client, data: {autocomplete: @clients.map{|c| c.name }}, class: "form-control" %>
+  <%= form.label :customer_name %><br>
+  <%= form.text_field :customer_name,
+          data: {autocomplete: @clients.map{|c| c.name }},
+          class: "form-control",
+          id: 'customer_name' %>
 </div>
 
 <div class="form-group">
-  <%= form.label :estimate %><br>
-  <%= form.text_field :estimate, class: "form-control" %>
+  <%= form.label :invoice_number %><br>
+  <%= form.text_field :invoice_number, class: "form-control" %>
 </div>
 <div class="form-group">
-  <%= form.label :reference %><br>
-  <%= form.text_field :reference, class: "form-control" %>
+  <%= form.label :order_number %><br>
+  <%= form.text_field :order_number, class: "form-control" %>
 </div>
 <div class="form-group">
   <%= form.label :emails %><br>
@@ -17,13 +20,13 @@
 </div>
 
 <div class="form-group">
-  <%= form.label :estimate_date  %><br>
-  <%= form.text_field :estimate_date, 'data-role' => 'datepicker', class: 'form-control' %>
+  <%= form.label :invoice_date  %><br>
+  <%= form.text_field :invoice_date, 'data-role' => 'datepicker', class: 'form-control' %>
 </div>
 
 <div class="form-group">
-  <%= form.label :expiry_date  %><br>
-  <%= form.text_field :expiry_date, 'data-role' => 'datepicker', class: 'form-control' %>
+  <%= form.label :due_date  %><br>
+  <%= form.text_field :due_date, 'data-role' => 'datepicker', class: 'form-control' %>
 </div>
 <div class="form-group">
   <label>Items Details</label>
@@ -39,7 +42,7 @@
       </tr>
     </thead>
     <tbody class="nested_form">
-    <%= form.nested_fields_for :estimate_items, show_empty: true do |f|
+    <%= form.nested_fields_for :invoice_items, show_empty: true do |f|
       if f
         render 'estimate_item', f: f
       else
@@ -55,17 +58,27 @@
       <td colspan="3" class="right span-14">Sub Total</td>
       <td colspan="2" class="right">
         <div class='sub_total'>0</div>
-        <%= form.hidden_field :total_amount %>
+        <%= form.hidden_field :amount %>
       </td>
     </tr>
     <tr>
       <td colspan="3" class="right span-14">Discount(%)</td>
-      <td class="span-3 discount"><%= form.number_field :discount, class: 'span-3 right form-control', min: 0 %></td>
+      <td class="span-3 discount">
+        <%= form.number_field :discount,
+            class: 'span-3 right form-control',
+            min: 0,
+            placeholder: 0 %>
+      </td>
       <td class="center span-2"> - <span class='discount_sum'>0</span></td>
     </tr>
     <tr>
       <td colspan="3" class="right span-14">Shipping Charges</td>
-      <td class="span-3"><%= form.number_field :shipping_charges, class: 'span-3 right form-control', min: 0 %></td>
+      <td class="span-3">
+        <%= form.number_field :shipping_charges,
+            class: 'span-3 right form-control',
+            min: 0, id: 'shipping_charges',
+            placeholder: 0 %>
+      </td>
       <td class="center span-2"><span class='shipping_sum'>0</span></td>
     </tr>
     <tr>
@@ -79,14 +92,14 @@
 </div>
 <p>
   <%= label_tag :job_estimate_assets, "Attachment" %><br>
-  <%= file_field_tag('job_estimate_assets_image', multiple: true, name: "job_estimate[assets_attributes][][image]") %>
+  <%= form.file_field :asset %>
 </p>
 
 <div class="form-group">
-  <%= form.label :client_notes %><br>
-  <%= form.text_area :client_notes, class: 'form-control', rows: 4 %>
+  <%= form.label :customer_notes %><br>
+  <%= form.text_area :customer_notes, class: 'form-control', rows: 4 %>
 </div>
 <div class="form-group">
-  <%= form.label :terms_and_conditions %><br>
-  <%= form.text_area :terms_and_conditions, value: @job_estimate.terms_and_conditions.blank? ? settings.terms_and_conditions : @job_estimate.terms_and_conditions, class: 'form-control', rows: 10 %>
+  <%= form.label :terms_and_cond %><br>
+  <%= form.text_area :terms_and_cond, value: @invoice.terms_and_cond.blank? ? settings.terms_and_conditions : @invoice.terms_and_cond, class: 'form-control', rows: 10 %>
 </div>

@@ -1,5 +1,7 @@
 <div class="details-container clearfix">
-  <div class="ribbon accepted"><span>Accepted</span></div>
+  <div class="ribbon <%= Invoice::STATUS[@invoice.status].downcase %>">
+    <span><%= Invoice::STATUS[@invoice.status] %></span>
+  </div>
   <div>
     <div class="estimate">
       <div class="estimate-header estimate-content">
@@ -87,23 +89,23 @@
             </tr>
           </thead>
           <tbody class="itemBody">
-            <%# @invoice.estimate_items.each_with_index do |item, index| %>
+            <% @invoice.invoice_items.each_with_index do |item, index| %>
             <tr>
-              <td class="est-item-row" id="td_1bbd_13" valign="top"><%#= index + 1 %></td>
+              <td class="est-item-row" id="td_1bbd_13" valign="top"><%= index + 1 %></td>
               <td class="est-item-row" id="td_1bbd_14" valign="top">
-                <span class="est-item-desc" id="span_1bbd_0"><%#= item.title %></span>
+                <span class="est-item-desc" id="span_1bbd_0"><%= item.title %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_15" valign="top">
-                <span><%#= item.quantity %></span>
+                <span><%= item.quantity %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_16" valign="top">
-                <span><%#= item.price %></span>
+                <span><%= item.price %></span>
               </td>
               <td class="est-item-row" id="td_1bbd_17" valign="top">
-                <span><%#= item.total_price %></span>
+                <span><%= item.total_price %></span>
               </td>
             </tr>
-            <%# end %>
+            <% end %>
           </tbody>
         </table>
         <div id="div_1bbd_3">

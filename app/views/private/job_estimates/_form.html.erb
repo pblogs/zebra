@@ -1,6 +1,9 @@
 <div class="form-group">
   <%= form.label :name_client %><br>
-  <%= form.text_field :name_client, data: {autocomplete: @clients.map{|c| c.name }}, class: "form-control" %>
+  <%= form.text_field :name_client,
+        data: {autocomplete: @clients.map{|c| c.name }},
+        class: "form-control",
+        id: 'customer_name' %>
 </div>
 
 <div class="form-group">
@@ -65,7 +68,12 @@
     </tr>
     <tr>
       <td colspan="3" class="right span-14">Shipping Charges</td>
-      <td class="span-3"><%= form.number_field :shipping_charges, class: 'span-3 right form-control', min: 0 %></td>
+      <td class="span-3">
+        <%= form.number_field :shipping_charges,
+            class: 'span-3 right form-control',
+            min: 0, id: 'shipping_charges',
+            placeholder: 0 %>
+      </td>
       <td class="center span-2"><span class='shipping_sum'>0</span></td>
     </tr>
     <tr>
