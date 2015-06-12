@@ -1,62 +1,63 @@
 <div class="details-container clearfix">
-  <div class="ribbon <%= JobEstimate::STATE[@job_estimate.state].downcase %>"><span><%= JobEstimate::STATE[@job_estimate.state] %></span></div>
+  <div class="ribbon accepted"><span>Accepted</span></div>
   <div>
     <div class="estimate">
       <div class="estimate-header estimate-content">
       </div>
 
       <div class="estimate-body">
-        <div style="display:table;width:100%;">
-          <div style="float:left;width:50%;">
+        <div id="div_1bbd_0">
+          <div id="div_1bbd_1">
             <div>
               <%= image_tag(@setting.logo.url(:small), class: 'logo_content') if @setting && @setting.logo.present? %>
             </div>
-            <span class="est-orgname"><b><%= settings.company_name %></b></span><br>
+            <span class="est-orgname"><b>Zebra</b></span><br>
             <span class="est-label">
-             <span id="tmp_org_address" style="white-space: pre-wrap;"><%= settings.address %>
-              <%= settings.city %> <%= settings.state %> <%= settings.postal_code %>
-              <%= settings.fax %>
-              <%= settings.phone %></span>
+              <span id="tmp_org_address" >
+                <%= settings.city %> <%= settings.state %> <%= settings.postal_code %>
+                <%= settings.fax %>
+                <%= settings.phone %>
+              </span>
             </span>
           </div>
-          <div style="float:right;width:50%;text-align:right;">
+          <div id="div_1bbd_2">
             <span class="est-entity-title">ESTIMATE</span><br>
-            <span class="est-label" style="font-size: 10pt;" id="tmp_entity_number"><b><%= @job_estimate.estimate %></b></span>
+            <span class="est-label"  id="tmp_entity_number"><b><%= @job_estimate.estimate %></b></span>
           </div>
         </div>
 
-        <table style="width:100%;margin-top:30px;table-layout:fixed;" class="estimate-no-border">
-          <tr>
-            <td style="width:60%;vertical-align:bottom;word-wrap: break-word; border: none;">
-              <div><label class="est-label" id="tmp_billing_address_label" style="font-size: 10pt;">Bill To</label>
+        <table id="table_1bbd_0" class="estimate-no-border">
+          <tbody><tr>
+            <td id="td_1bbd_0">
+              <div><label class="est-label" id="tmp_billing_address_label" >Bill To</label>
                 <br>
                 <span id="zb-pdf-customer-detail" class="est-customer-name"><%= @job_estimate.name_client %></span><br>
               </div>
             </td>
-            <td style="vertical-align:bottom;width: 40%;" align="right">
-              <table cellpadding="0" cellspacing="0" border="0" style="float:right;table-layout: fixed;word-wrap: break-word;width: 100%;" class="estimate-no-border">
+            <td id="td_1bbd_1" align="right">
+              <table cellpadding="0" cellspacing="0" border="0" id="table_1bbd_1" class="estimate-no-border">
                 <tbody>
                   <tr>
-                    <td style="text-align:right;padding:5px 10px 5px 0px;font-size:10pt;">
+                    <td id="td_1bbd_2">
                       <span class="est-label">Estimate Date :</span>
                     </td>
-                    <td style="text-align:right;">
+                    <td id="td_1bbd_3">
                       <span id="tmp_entity_date"><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></span>
                     </td>
                   </tr>
                   <tr>
-                    <td style="text-align:right;padding:5px 10px 5px 0px;font-size: 10pt;">
+                    <td id="td_1bbd_4">
                       <span class="est-label">Expiry Date :</span>
                     </td>
-                    <td style="text-align:right;">
+                    <td id="td_1bbd_5">
                       <span id="tmp_due_date"><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></span>
                     </td>
                   </tr>
                   <tr>
-                    <td style="text-align:right;padding:5px 10px 5px 0px;font-size: 10pt;">
+                    <td id="td_1bbd_6">
                       <span class="est-label">Reference# :</span>
                     </td>
-                    <td style="text-align:right;">
+                    <td id="td_1bbd_7">
                       <span id="tmp_ref_number"><%= @job_estimate.reference %></span>
                     </td>
                   </tr>
@@ -64,92 +65,92 @@
               </table>
             </td>
           </tr>
-        </table>
-        <table cellpadding="0" cellspacing="0" border="0" class="est-itemtable estimate-no-border" style="width:100%;margin-top:20px;table-layout:fixed;">
+        </tbody></table>
+        <table cellpadding="0" cellspacing="0" border="0" class="est-itemtable estimate-no-border" id="table_1bbd_2">
           <thead>
-            <tr style="height:32px;">
-              <td class="est-itemtable-header" style="padding:5px 0 5px 5px;text-align: center;word-wrap: break-word;width: 5%;">
+            <tr id="tr_1bbd_0">
+              <td class="est-itemtable-header" id="td_1bbd_8">
                 #
               </td>
-              <td class="est-itemtable-header" style="padding:5px 10px 5px 10px;word-wrap: break-word;">
+              <td class="est-itemtable-header" id="td_1bbd_9">
                 Item &amp; Description
               </td>
-              <td class="est-itemtable-header" style="padding:5px 10px 5px 5px;word-wrap: break-word;width: 11%; text-align: right;">
+              <td class="est-itemtable-header" id="td_1bbd_10">
                 Quantity
               </td>
-              <td class="est-itemtable-header" style="padding:5px 10px 5px 5px;word-wrap: break-word;width: 11%; text-align: right;">
+              <td class="est-itemtable-header" id="td_1bbd_11">
                 Price
               </td>
-              <td class="est-itemtable-header" style="padding:5px 10px 5px 5px;word-wrap: break-word;width:120px; text-align: right;">
+              <td class="est-itemtable-header" id="td_1bbd_12">
                 Total Price
               </td>
             </tr>
           </thead>
           <tbody class="itemBody">
-            <% i = 0
-            @job_estimate.estimate_items.each do |item|
-             i += 1
-             %>
-             <tr>
-              <td class="est-item-row" style="padding: 10px 0 10px 5px;text-align: center;word-wrap: break-word;border-bottom: 1px solid #e3e3e3;" valign="top"><%= i %></td>
-              <td class="est-item-row" style="padding: 10px 0px 10px 10px;border-bottom: 1px solid #e3e3e3;" valign="top">
-                <span class="est-item-desc" style="white-space: pre-wrap;word-wrap: break-word;"><%= item.title %></span>
+            <% @job_estimate.estimate_items.each_with_index do |item, index| %>
+            <tr>
+              <td class="est-item-row" id="td_1bbd_13" valign="top"><%= index + 1 %></td>
+              <td class="est-item-row" id="td_1bbd_14" valign="top">
+                <span class="est-item-desc" id="span_1bbd_0"><%= item.title %></span>
               </td>
-              <td class="est-item-row" style="padding: 10px 10px 5px 10px;text-align:right;word-wrap: break-word;border-bottom: 1px solid #e3e3e3;" valign="top">
+              <td class="est-item-row" id="td_1bbd_15" valign="top">
                 <span><%= item.quantity %></span>
               </td>
-              <td class="est-item-row" style="padding: 10px 10px 5px 10px;text-align:right;word-wrap: break-word;border-bottom: 1px solid #e3e3e3;" valign="top">
+              <td class="est-item-row" id="td_1bbd_16" valign="top">
                 <span><%= item.price %></span>
               </td>
-              <td class="est-item-row" style="text-align:right;padding: 10px 10px 10px 5px;word-wrap: break-word;border-bottom: 1px solid #e3e3e3;" valign="top">
+              <td class="est-item-row" id="td_1bbd_17" valign="top">
                 <span><%= item.total_price %></span>
               </td>
             </tr>
             <% end %>
           </tbody>
         </table>
-        <div style="width: 100%;margin-top: 1px;">
-          <div style="width: 45%;padding: 3px 10px 3px 3px;font-size: 9pt;float: left;">
-            <div style="white-space: pre-wrap;"></div>
+        <div id="div_1bbd_3">
+          <div id="div_1bbd_4">
+            <div id="div_1bbd_5"></div>
           </div>
-          <div style="width: 50%;float:right;">
+          <div id="div_1bbd_6">
             <table width="100%" border="0" cellspacing="0" class="est-totals estimate-no-border">
               <tbody>
                 <tr>
-                  <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Sub Total</td>
-                  <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle" id="tmp_subtotal"><%= @job_estimate.sub_total_amount %></td>
+                  <td id="td_1bbd_18" valign="middle">Sub Total</td>
+                  <td  valign="middle" id="tmp_subtotal"><%= @job_estimate.sub_total_amount %></td>
                 </tr>
                 <tr>
-                  <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Discount(<%= @job_estimate.discount %>
-                    %)
+                  <td id="td_1bbd_19" valign="middle">Discount(<%= @job_estimate.discount %>%)
                   </td>
-                  <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle">
+                  <td id="td_1bbd_20" valign="middle">
                     (-) <%= @job_estimate.sub_total_amount * @job_estimate.discount / 100 %>
                   </td>
                 </tr>
-                <tr style="height:10px;">
-                  <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Shipping charge</td>
-                  <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle"><%= @job_estimate.shipping_charges %></td>
+                <tr id="tr_1bbd_1">
+                  <td id="td_1bbd_21" valign="middle">Shipping charge</td>
+                  <td id="td_1bbd_22" valign="middle"><%= @job_estimate.shipping_charges %></td>
                 </tr>
 
-                <tr class="est-balance" style="height:40px;">
-                  <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle"><b>Total</b></td>
-                  <td style="width:120px;;padding: 10px 10px 10px 5px; text-align: right;" valign="middle" id="tmp_total">
+                <tr class="est-balance" id="tr_1bbd_2">
+                  <td id="td_1bbd_23" valign="middle"><b>Total</b></td>
+                  <td  valign="middle" id="tmp_total">
                     <b> <%= number_to_currency(@job_estimate.total_amount) %></b></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div style="clear: both;"></div>
+            <div id="div_1bbd_7"></div>
           </div>
-          <div style="clear:both;margin-top:50px;width:100%;">
-            <label class="est-label" id="tmp_notes_label" style="font-size: 10pt;">Notes</label><br>
-            <p class="est-notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.client_notes %></p>
+          <div id="div_1bbd_8">
+            <label class="est-label" id="tmp_notes_label" >Notes</label><br>
+            <div class="est-notes" id="p_1bbd_0">
+              <%=simple_format @job_estimate.client_notes %>
+            </div>
           </div>
-          <div style="clear:both;margin-top:30px;width:100%;">
-            <label class="est-label" id="tmp_terms_label" style="font-size: 10pt;">Terms &amp; Conditions</label><br>
-            <p class="est-terms" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.terms_and_conditions %></p>
+          <div id="div_1bbd_9">
+            <label class="est-label" id="tmp_terms_label" >Terms &amp; Conditions</label><br>
+            <div class="est-terms" id="p_1bbd_1">
+              <%=simple_format @job_estimate.terms_and_conditions %>
+            </div>
           </div>
         </div>
         <div class="estimate-footer"></div>
