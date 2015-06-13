@@ -58,5 +58,5 @@ function updateTable () {
   jQuery('.discount_sum').html(discount_sum)
   jQuery('.shipping_sum').html(shipping_sum)
   jQuery('.total_sum').html(total_sum)
-  jQuery('#job_estimate_total_amount, #invoice_total_amount').val(total_sum)
+  jQuery('#job_estimate_total_amount, #invoice_amount').val(total_sum)
 }

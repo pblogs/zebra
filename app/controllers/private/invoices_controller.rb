@@ -47,31 +47,31 @@ class Private::InvoicesController < ApplicationController
     end
   end
 
-  # def edit
-  #   @job_estimate = JobEstimate.find(params[:id])
-  #   @page_title = "Edit Job Estimate"
-  #   @clients = Client.order(:name)
-  #   @gun_marking_categories = GunMarkingCategory.all
-  # end
+  def edit
+    @invoice = Invoice.find(params[:id])
+    @page_title = "Edit invoice"
+    @clients = Client.order(:name)
+    @gun_marking_categories = GunMarkingCategory.all
+  end
 
-  # def update
-  #   @job_estimate = JobEstimate.find(params[:id])
-  #   @page_title = "Edit Job Estimate"
+  def update
+    @invoice = Invoice.find(params[:id])
+    @page_title = "Edit Invoice"
 
-  #   if @job_estimate.update_attributes(params[:job_estimate])
-  #     if params[:save_and_send]
-  #       @job_estimate.emails.split(',').each do |email|
-  #         SiteMailer.delay.send_job_estimate_notice(@job_estimate, email)
-  #       end
-  #     end
-  #     flash[:notice] = "Job Estimate updated!"
-  #     redirect_to private_job_estimate_path(@job_estimate)
-  #   else
-  #     @clients = Client.order(:name)
-  #     @gun_marking_categories = GunMarkingCategory.all
-  #     render action: :edit
-  #   end
-  # end
+    if @invoice.update_attributes(params[:invoice])
+      if params[:save_and_send]
+        @invoice.emails.split(',').each do |email|
+          SiteMailer.delay.send_invoice_notice(@invoice, email)
+        end
+      end
+      flash[:notice] = "Invoice updated!"
+      redirect_to private_invoice_path(@invoice)
+    else
+      @clients = Client.order(:name)
+      @gun_marking_categories = GunMarkingCategory.all
+      render action: :edit
+    end
+  end
 
   # def destroy
   #   @job_estimate = JobEstimate.find(params[:id])

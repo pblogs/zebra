@@ -117,18 +117,18 @@
               <tbody>
                 <tr>
                   <td id="td_1bbd_18" valign="middle">Sub Total</td>
-                  <td  valign="middle" id="tmp_subtotal"><%#= @invoice.sub_total_amount %></td>
+                  <td  valign="middle" id="tmp_subtotal"><%= @invoice.sub_total_amount %></td>
                 </tr>
                 <tr>
-                  <td id="td_1bbd_19" valign="middle">Discount(<%#= @invoice.discount %>%)
+                  <td id="td_1bbd_19" valign="middle">Discount(<%= @invoice.discount %>%)
                   </td>
                   <td id="td_1bbd_20" valign="middle">
-                    (-) <%#= @invoice.sub_total_amount * @invoice.discount / 100 %>
+                    (-) <%= @invoice.sub_total_amount * @invoice.discount / 100 %>
                   </td>
                 </tr>
                 <tr id="tr_1bbd_1">
                   <td id="td_1bbd_21" valign="middle">Shipping charge</td>
-                  <td id="td_1bbd_22" valign="middle"><%#= @invoice.shipping_charges %></td>
+                  <td id="td_1bbd_22" valign="middle"><%= @invoice.shipping_charges %></td>
                 </tr>
 
                 <tr class="est-balance" id="tr_1bbd_2">

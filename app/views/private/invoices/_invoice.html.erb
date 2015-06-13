@@ -1,11 +1,11 @@
-<% if permitted_to?(:edit, :private_job_estimates) and !in_mobile_view? %>
+<% if permitted_to?(:edit, :private_invoices) and !in_mobile_view? %>
   <div class="btn-group noprint" role="group" aria-label="...">
-    <%= link_to fa_icon('pencil'), edit_private_job_estimate_path(@invoice.id), class: "btn btn-default" %>
-    <%= link_to fa_icon('print'), private_job_estimate_path(@invoice.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
+    <%= link_to fa_icon('pencil'), edit_private_invoice_path(@invoice.id), class: "btn btn-default" %>
+    <%= link_to fa_icon('print'), private_invoice_path(@invoice.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
     <%= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
   </div>
 
-  <%= link_to 'Convert to invoice', '#', class: 'btn btn-danger' %>
+  <%= link_to 'Some Action', '#', class: 'btn btn-danger' %>
 
   <div class="dropdown pull-right">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
