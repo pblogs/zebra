@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150612224110) do
+ActiveRecord::Schema.define(:version => 20150613191208) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -298,7 +298,7 @@ ActiveRecord::Schema.define(:version => 20150612224110) do
     t.decimal  "amount",           :precision => 8, :scale => 2
     t.datetime "created_at",                                                               :null => false
     t.datetime "updated_at",                                                               :null => false
-    t.integer  "discount"
+    t.decimal  "discount",                                       :default => 0.0
     t.decimal  "shipping_charges", :precision => 8, :scale => 2
     t.decimal  "sub_total_amount", :precision => 8, :scale => 2
   end
