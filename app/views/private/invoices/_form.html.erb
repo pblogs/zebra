@@ -92,7 +92,7 @@
 </div>
 <p>
   <%= label_tag :job_estimate_assets, "Attachment" %><br>
-  <%= form.file_field :asset %>
+  <%= file_field_tag('invoice_assets_image', multiple: true, name: "invoice[assets_attributes][][image]") %>
 </p>
 
 <div class="form-group">
