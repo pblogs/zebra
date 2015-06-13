@@ -1,0 +1,20 @@
+<tr class="item">
+  <td class="title">
+    <%= f.text_field :title, data: {autocomplete: @gun_marking_categories.map { |cat| cat.name }.uniq}, class: "span-7 autocomplete" %>
+  </td>
+  <td class="quantity">
+    <%= f.text_field :quantity, class: "form-control", min: 0 %>
+  </td>
+  <td class="price">
+    <%= f.text_field :price, class: "form-control estimate_unit_price", min: 0 %>
+  </td>
+  <td class="amount">
+    <div class='total-price' style='text-align:center;width:80px;line-height: 30px;'></div>
+    <%= f.hidden_field :total_price, min: 0 %>
+  </td>
+  <td>
+    <a href="#" class="remove" data-confirm="Are you sure?">remove</a>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :_destroy %>
+  </td>
+</tr>

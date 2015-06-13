@@ -1,0 +1,44 @@
+<% if permitted_to?(:edit, :private_invoices) and !in_mobile_view? %>
+  <div class="btn-group noprint" role="group" aria-label="...">
+    <%= link_to fa_icon('pencil'), edit_private_invoice_path(@invoice.id), class: "btn btn-default" %>
+    <%= link_to fa_icon('print'), private_invoice_path(@invoice.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
+    <%= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
+  </div>
+
+  <%= link_to 'Some Action', '#', class: 'btn btn-danger' %>
+
+  <div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      More...
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <li role="presentation"><%= link_to 'Mark as accepted', mark_invoice_private_job_estimate_path(@invoice.id, status: 'Accepted'), method: :put %></li>
+      <li role="presentation"><%= link_to 'Mark as declined', mark_invoice_private_job_estimate_path(@invoice.id, status: 'Declined'), method: :put %></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><%= link_to 'Delete', private_job_estimate_path(@invoice.id), confirm: 'Are you sure? This cannot be undone!', method: :delete %></li>
+    </ul>
+  </div>
+  <%= link_to fa_icon('times'), '#', class: 'btn btn-default close_preview' %>
+<% end %>
+<hr>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= render partial: 'one' %>
+    <%#= render 'assets' %>
+    <%= content_for :breadcrumb do %>
+      <ul id="breadcrumb" class="noprint">
+        <li><%= link_to 'Dashboard', private_home_path %></li>
+        <li>»</li>
+        <li><%= link_to 'Job Estimates', private_job_estimates_path %></li>
+        <li>»</li>
+        <li><%= @page_title %></li>
+      </ul>
+    <% end %>
+    <%= content_for :submenu do %>
+      <% if permitted_to? :create, :private_job_estimates -%>
+        <li><%= active_link_to 'New Job Estimate', new_private_job_estimate_path %></li>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+jQuery('div.estimate_listing').removeClass('col-md-12')
+jQuery('div.estimate_listing').addClass('col-md-4')
+jQuery('div.preview_estimate').fadeOut('fast')
+jQuery('div.preview_estimate').html('<%= j(render(@invoice)) %>')
+jQuery('div.preview_estimate').fadeIn('fast')
+
+jQuery('.close_preview').click(function (event) {
+  jQuery('tr.selected').removeClass('selected')
+  jQuery('div.preview_estimate').fadeOut('slow')
+  jQuery('div.preview_estimate').html('')
+  jQuery('div.estimate_listing').removeClass('col-md-4')
+  jQuery('div.estimate_listing').addClass('col-md-12')
+})

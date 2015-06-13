@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150611201630) do
+ActiveRecord::Schema.define(:version => 20150612224110) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -272,6 +272,35 @@ ActiveRecord::Schema.define(:version => 20150611201630) do
   create_table "gun_sheets_job_sheets", :id => false, :force => true do |t|
     t.integer "gun_sheet_id"
     t.integer "job_sheet_id"
+  end
+
+  create_table "invoice_items", :force => true do |t|
+    t.integer  "invoice_id"
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "quantity"
+    t.decimal  "price"
+    t.decimal  "total_price"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "invoices", :force => true do |t|
+    t.string   "customer_name"
+    t.string   "invoice_number"
+    t.string   "order_number"
+    t.date     "invoice_date",                                   :default => '2015-06-12'
+    t.date     "due_date",                                       :default => '2015-06-12'
+    t.text     "customer_notes"
+    t.text     "terms_and_cond"
+    t.string   "emails"
+    t.integer  "status",                                         :default => 0
+    t.decimal  "amount",           :precision => 8, :scale => 2
+    t.datetime "created_at",                                                               :null => false
+    t.datetime "updated_at",                                                               :null => false
+    t.integer  "discount"
+    t.decimal  "shipping_charges", :precision => 8, :scale => 2
+    t.decimal  "sub_total_amount", :precision => 8, :scale => 2
   end
 
   create_table "job_estimates", :force => true do |t|

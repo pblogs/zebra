@@ -7,8 +7,8 @@ jQuery(document).ready(function () {
 })
 
 jQuery(function () {
-  jQuery('#job_estimate_name_client').autocomplete({
-    source: jQuery('#job_estimate_name_client').data('autocomplete'),
+  jQuery('#customer_name').autocomplete({
+    source: jQuery('#customer_name').data('autocomplete'),
     minLength: 3
   })
 
@@ -50,13 +50,13 @@ function updateTable () {
   })
 
   discount_sum += sub_total * Number(jQuery('table tr').find('td.discount').find('input').val()) / 100
-  shipping_sum += Number(jQuery('table tr').find('input#job_estimate_shipping_charges').val())
+  shipping_sum += Number(jQuery('table tr').find('input#shipping_charges').val())
   total_sum += sub_total + shipping_sum - discount_sum
 
   jQuery('.sub_total').html(sub_total)
-  jQuery('#job_estimate_sub_total_amount').val(sub_total)
+  jQuery('#job_estimate_sub_total_amount, #invoice_sub_total_amount').val(sub_total)
   jQuery('.discount_sum').html(discount_sum)
   jQuery('.shipping_sum').html(shipping_sum)
   jQuery('.total_sum').html(total_sum)
-  jQuery('#job_estimate_total_amount').val(total_sum)
+  jQuery('#job_estimate_total_amount, #invoice_amount').val(total_sum)
 }
