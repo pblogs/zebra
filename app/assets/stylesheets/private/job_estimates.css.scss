@@ -146,6 +146,13 @@ table.estimate-no-border tr td {
    background: linear-gradient(#D2603F 0%, rgb(207, 6, 6) 100%);
 }
 
+.ribbon.sent span{
+   background: linear-gradient(#1e7ab8 0%, #1e7ab8 100%);
+}
+
+.ribbon.overdue span{
+   background: linear-gradient(#f59d00 0%, #c27c00 100%);
+}
 
 .ribbon span::before {
   content: "";

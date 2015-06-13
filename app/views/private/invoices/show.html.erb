@@ -12,12 +12,12 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 preview_estimate">
   <%= render partial: 'one' %>
-  <%#= render 'assets' %>
+  <%= render 'assets' if @invoice.assets.any? %>
   <%= content_for :breadcrumb do %>
     <ul id="breadcrumb" class="noprint">
       <li><%= link_to 'Dashboard', private_home_path %></li>
       <li>»</li>
-      <li><%= link_to 'Job Estimates', private_invoices_path %></li>
+      <li><%= link_to 'Invoices', private_invoices_path %></li>
       <li>»</li>
       <li><%= @page_title %></li>
     </ul>

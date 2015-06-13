@@ -5,7 +5,7 @@
     <%= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
   </div>
 
-  <%= link_to 'Some Action', '#', class: 'btn btn-danger' %>
+  <%#= link_to 'Some Action', '#', class: 'btn btn-danger' %>
 
   <div class="dropdown pull-right">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -25,7 +25,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <%= render partial: 'one' %>
-    <%#= render 'assets' %>
+    <%= render 'assets' if @invoice.assets.any? %>
     <%= content_for :breadcrumb do %>
       <ul id="breadcrumb" class="noprint">
         <li><%= link_to 'Dashboard', private_home_path %></li>
