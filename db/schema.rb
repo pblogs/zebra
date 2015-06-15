@@ -289,15 +289,15 @@ ActiveRecord::Schema.define(:version => 20150613191208) do
     t.string   "customer_name"
     t.string   "invoice_number"
     t.string   "order_number"
-    t.date     "invoice_date",                                   :default => '2015-06-12'
-    t.date     "due_date",                                       :default => '2015-06-12'
+    t.date     "invoice_date"
+    t.date     "due_date"
     t.text     "customer_notes"
     t.text     "terms_and_cond"
     t.string   "emails"
     t.integer  "status",                                         :default => 0
     t.decimal  "amount",           :precision => 8, :scale => 2
-    t.datetime "created_at",                                                               :null => false
-    t.datetime "updated_at",                                                               :null => false
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
     t.decimal  "discount",                                       :default => 0.0
     t.decimal  "shipping_charges", :precision => 8, :scale => 2
     t.decimal  "sub_total_amount", :precision => 8, :scale => 2

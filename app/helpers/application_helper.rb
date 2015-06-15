@@ -63,4 +63,8 @@ module ApplicationHelper
     settings = Setting.first
     settings.present? ? settings : ''
   end
+
+  def terms_and_conditions
+    @invoice.terms_and_cond.blank? ? settings.terms_and_conditions : (@invoice.terms_and_cond)
+  end
 end

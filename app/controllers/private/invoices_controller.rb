@@ -26,6 +26,25 @@ class Private::InvoicesController < ApplicationController
     @page_title = "New Invoice"
     @clients = Client.order(:name)
     @gun_marking_categories = GunMarkingCategory.all
+    return unless params[:job_estimate]
+    estimate = JobEstimate.where(id: params[:job_estimate]).first
+    @invoice.customer_name = estimate.name_client
+    @invoice.emails = estimate.emails
+    @invoice.discount = estimate.discount
+    @invoice.shipping_charges = estimate.shipping_charges
+    @invoice.terms_and_cond = estimate.terms_and_conditions
+    @invoice.customer_notes = estimate.client_notes
+    @invoice.sub_total_amount = estimate.sub_total_amount
+    @invoice.amount = estimate.total_amount
+    estimate.estimate_items.each do |i|
+      @invoice.invoice_items.new(
+        title: i.title,
+        description: i.description,
+        quantity: i.quantity,
+        price: i.price,
+        total_price: i.total_price
+      )
+    end
   end
 
   def create
@@ -73,51 +92,9 @@ class Private::InvoicesController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @job_estimate = JobEstimate.find(params[:id])
-  #   @job_estimate.destroy
-  #   redirect_to private_job_estimates_path
-  # end
-
-  # def collect_emails
-  #   client = Client.find_by_name(params[:client_name])
-  #   emails = ''
-  #   if client
-  #     i = 0
-  #     client.client_contacts.each do |contact|
-  #       i += 1
-  #       emails << ', ' unless i == 1
-  #       emails << "#{contact.email}"
-  #     end
-  #   end
-
-  #   puts emails
-
-  #   respond_to do |format|
-  #     format.json  do
-  #       render json: { emails: emails }
-  #     end
-  #   end
-  # end
-
-  # def delete_document
-  #   @job_estimate = JobEstimate.find(params[:id])
-  #   document = @job_estimate.assets.find(params[:asset_id])
-  #   document.destroy
-
-  #   flash[:notice] = 'Document deleted!'
-  #   redirect_to private_job_estimate_path(@job_estimate)
-  # end
-
-  # def mark_invoice
-  #   @job_estimate = JobEstimate.find(params[:id])
-  #   @job_estimate.send("mark_as_#{params[:status].downcase}") if JobEstimate::STATE.values.include?(params[:status])
-
-  #   respond_to do |format|
-  #     format.html do
-  #       redirect_to :back
-  #     end
-  #     format.js
-  #   end
-  # end
+  def destroy
+    @invoice = Invoice.find(params[:id])
+    @invoice.destroy
+    redirect_to private_invoices_path, notice: 'Invoice succsesfully removed'
+  end
 end

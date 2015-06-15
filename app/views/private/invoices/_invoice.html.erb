@@ -2,7 +2,7 @@
   <div class="btn-group noprint" role="group" aria-label="...">
     <%= link_to fa_icon('pencil'), edit_private_invoice_path(@invoice.id), class: "btn btn-default" %>
     <%= link_to fa_icon('print'), private_invoice_path(@invoice.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
-    <%= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
+    <%#= link_to fa_icon('envelope'), '#', class: 'btn btn-default' %>
   </div>
 
   <%#= link_to 'Some Action', '#', class: 'btn btn-danger' %>
@@ -13,10 +13,7 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-      <li role="presentation"><%= link_to 'Mark as accepted', mark_invoice_private_job_estimate_path(@invoice.id, status: 'Accepted'), method: :put %></li>
-      <li role="presentation"><%= link_to 'Mark as declined', mark_invoice_private_job_estimate_path(@invoice.id, status: 'Declined'), method: :put %></li>
-      <li role="presentation" class="divider"></li>
-      <li role="presentation"><%= link_to 'Delete', private_job_estimate_path(@invoice.id), confirm: 'Are you sure? This cannot be undone!', method: :delete %></li>
+      <li role="presentation"><%= link_to 'Delete', private_invoice_path(@invoice.id), confirm: 'Are you sure? This cannot be undone!', method: :delete %></li>
     </ul>
   </div>
   <%= link_to fa_icon('times'), '#', class: 'btn btn-default close_preview' %>

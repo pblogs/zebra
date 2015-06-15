@@ -23,7 +23,7 @@
         <th>Reference#</th>
         <th>Customer Name</th>
         <th>Status</th>
-        <th>Amount</th>
+        <th class='to_hide'>Amount</th>
       </tr>
       <% @job_estimates.each do |estimate| %>
         <tr>
@@ -33,7 +33,7 @@
           <td><%= estimate.reference %></td>
           <td><%= estimate.name_client %></td>
           <td class="<%= JobEstimate::STATE[estimate.state].downcase %>"><%= JobEstimate::STATE[estimate.state] %></td>
-          <td><%= number_to_currency estimate.total_amount %></td>
+          <td class='to_hide'><%= number_to_currency estimate.total_amount %></td>
         </tr>
       <% end %>
     </table>

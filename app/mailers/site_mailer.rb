@@ -70,4 +70,9 @@ class SiteMailer < ActionMailer::Base
     @job_estimate = job_estimate
     mail(to: email, subject: "[AAAS] Job Estimate notice")
   end
+
+  def send_invoice_notice(invoice, email)
+    @invoice = invoice
+    mail(to: email, subject: "[AAAS] Job Estimate notice")
+  end
 end

@@ -22,9 +22,9 @@
         <th>Invoice#</th>
         <th>Order#</th>
         <th>Customer Name</th>
-        <th>Status</th>
-        <th>Due Date</th>
-        <th>Amount</th>
+        <th class='to_hide'>Status</th>
+        <th class='to_hide'>Due Date</th>
+        <th class='to_hide'>Amount</th>
       </tr>
       <% @invoices.each do |inv| %>
         <tr>
@@ -33,11 +33,11 @@
           <td><%= link_to inv.invoice_number,  private_invoice_path(inv), remote: true %></td>
           <td><%= inv.order_number %></td>
           <td><%= inv.customer_name %></td>
-          <td>
+          <td class='to_hide'>
             <%= invoice_status(inv) %>
           </td>
-          <td><%= l inv.due_date, format: :long if inv.due_date.present? %></td>
-          <td><%= number_to_currency inv.amount %></td>
+          <td class='to_hide'><%= l inv.due_date, format: :long if inv.due_date.present? %></td>
+          <td class='to_hide'><%= number_to_currency inv.amount %></td>
         </tr>
       <% end %>
     </table>

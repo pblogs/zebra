@@ -101,5 +101,5 @@
 </div>
 <div class="form-group">
   <%= form.label :terms_and_cond %><br>
-  <%= form.text_area :terms_and_cond, value: @invoice.terms_and_cond.blank? ? settings.terms_and_conditions : @invoice.terms_and_cond, class: 'form-control', rows: 10 %>
+  <%= form.text_area :terms_and_cond, value: terms_and_conditions, class: 'form-control', rows: 10 %>
 </div>

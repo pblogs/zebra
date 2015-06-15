@@ -4,7 +4,7 @@ class Invoice < ActiveRecord::Base
   accepts_nested_attributes_for :invoice_items, allow_destroy: true
   accepts_nested_attributes_for :assets
 
-  validates_presence_of :customer_name
+  validates_presence_of :customer_name, :invoice_number
 
   before_save :strip_customer_name, :check_status
 

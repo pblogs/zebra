@@ -19,8 +19,8 @@
 			</span>
           </div>
           <div style="float:right;width:50%;text-align:right;">
-            <span class="est-entity-title">ESTIMATE</span><br>
-            <span class="est-label" style="font-size: 10pt;" id="tmp_entity_number"><b># <%= @job_estimate.estimate %></b></span>
+            <span class="est-entity-title">INVOICE</span><br>
+            <span class="est-label" style="font-size: 10pt;" id="tmp_entity_number"><b># <%= @invoice.invoice_number %></b></span>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
             <td style="width:60%;vertical-align:bottom;word-wrap: break-word; border: none;">
               <div><label class="est-label" id="tmp_billing_address_label" style="font-size: 10pt;">Bill To</label>
                 <br>
-                <span id="zb-pdf-customer-detail" class="est-customer-name"><a><%= @job_estimate.name_client %> </a></span><br>
+                <span id="zb-pdf-customer-detail" class="est-customer-name"><a><%= @invoice.customer_name %> </a></span><br>
 
               </div>
             </td>
@@ -39,26 +39,26 @@
                 <tbody>
                 <tr>
                   <td style="text-align:right;padding:5px 10px 5px 0px;font-size:10pt;">
-                    <span class="est-label">Estimate Date :</span>
+                    <span class="est-label">Invoice Date :</span>
                   </td>
                   <td style="text-align:right;">
-                    <span id="tmp_entity_date"><%= @job_estimate.estimate_date ? @job_estimate.estimate_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></span>
+                    <span id="tmp_entity_date"><%= @invoice.invoice_date ? @invoice.invoice_date.strftime("%B %d, %Y") : 'Estimate Date missing' %></span>
                   </td>
                 </tr>
                 <tr>
                   <td style="text-align:right;padding:5px 10px 5px 0px;font-size: 10pt;">
-                    <span class="est-label">Expiry Date :</span>
+                    <span class="est-label">Due Date :</span>
                   </td>
                   <td style="text-align:right;">
-                    <span id="tmp_due_date"><%= @job_estimate.expiry_date ? @job_estimate.expiry_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></span>
+                    <span id="tmp_due_date"><%= @invoice.due_date ? @invoice.due_date.strftime("%B %d, %Y") : 'Expiry Date missing' %></span>
                   </td>
                 </tr>
                 <tr>
                   <td style="text-align:right;padding:5px 10px 5px 0px;font-size: 10pt;">
-                    <span class="est-label">Reference# :</span>
+                    <span class="est-label">Order# :</span>
                   </td>
                   <td style="text-align:right;">
-                    <span id="tmp_ref_number"><%= @job_estimate.reference %></span>
+                    <span id="tmp_ref_number"><%= @invoice.order_number %></span>
                   </td>
                 </tr>
 
@@ -92,7 +92,7 @@
           </thead>
           <tbody class="itemBody">
           <% i = 0
-             @job_estimate.estimate_items.each do |item|
+             @invoice.invoice_items.each do |item|
                i += 1
           %>
             <tr>
@@ -122,25 +122,25 @@
               <tbody>
               <tr>
                 <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Sub Total</td>
-                <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle" id="tmp_subtotal"><%= @job_estimate.sub_total_amount %></td>
+                <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle" id="tmp_subtotal"><%= @invoice.sub_total_amount %></td>
               </tr>
               <tr>
-                <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Discount(<%= @job_estimate.discount %>
+                <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Discount(<%= @invoice.discount %>
                   %)
                 </td>
                 <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle">
-                  (-) <%= @job_estimate.sub_total_amount * @job_estimate.discount / 100 %>
+                  (-) <%= @invoice.sub_total_amount * @invoice.discount / 100 %>
                 </td>
               </tr>
               <tr style="height:10px;">
                 <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle">Shipping charge</td>
-                <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle"><%= @job_estimate.shipping_charges %></td>
+                <td style="width:120px;padding: 10px 10px 10px 5px; text-align: right;" valign="middle"><%= @invoice.shipping_charges %></td>
               </tr>
 
               <tr class="est-balance" style="height:40px;">
                 <td style="padding: 5px 10px 5px 0; text-align: right;" valign="middle"><b>Total</b></td>
                 <td style="width:120px;;padding: 10px 10px 10px 5px; text-align: right;" valign="middle" id="tmp_total">
-                  <b> <%= number_to_currency(@job_estimate.total_amount) %></b></td>
+                  <b> <%= number_to_currency(@invoice.amount) %></b></td>
               </tr>
               </tbody>
             </table>
@@ -151,13 +151,13 @@
         <div style="clear:both;margin-top:50px;width:100%;">
           <label class="est-label" id="tmp_notes_label" style="font-size: 10pt;">Notes</label><br>
 
-          <p class="est-notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.client_notes %></p>
+          <p class="est-notes" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @invoice.customer_notes %></p>
         </div>
 
         <div style="clear:both;margin-top:30px;width:100%;">
           <label class="est-label" id="tmp_terms_label" style="font-size: 10pt;">Terms &amp; Conditions</label><br>
 
-          <p class="est-terms" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @job_estimate.terms_and_conditions %></p>
+          <p class="est-terms" style="margin-top:7px;white-space: pre-wrap;word-wrap: break-word;"><%=simple_format @invoice.terms_and_cond %></p>
         </div>
       </div>
       <div class="estimate-footer">
