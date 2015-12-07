@@ -1,0 +1,53 @@
+<% if permitted_to? :edit, :private_settings -%>
+  <div class="show_actions"><%= active_link_to 'Edit App Settings', edit_private_setting_path(@setting), class: "btn btn-warning" %></div>
+<% end %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= content_for :breadcrumb do %>
+      <ul id="breadcrumb">
+        <li><%= link_to 'Dashboard', private_home_path %></li>
+        <li>»</li>
+        <li><%= @page_title %></li>
+      </ul>
+    <% end %>
+    <table class='table table-hover'>
+      <tr>
+        <th class="col-md-2">Company Name</th>
+        <td style="border-top: solid 1px #ccc"><%= @setting.company_name %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">city</th>
+        <td><%= @setting.city %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">address </th>
+        <td><%= @setting.address %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">Postal Code</th>
+        <td><%= @setting.postal_code %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">State</th>
+        <td><%= @setting.state %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">Phone</th>
+        <td><%= @setting.phone %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">Fax</th>
+        <td><%= @setting.fax %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">Logo</th>
+        <td><%= image_tag(@setting.logo.url(:small)) if @setting.logo.present? %></td>
+      </tr>
+      <tr>
+        <th class="col-md-2">Terms && Conditions</th>
+        <td><%= @setting.terms_and_conditions %></td>
+      </tr>
+    </table>
+    
+  </div>
+</div>

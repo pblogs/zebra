@@ -1,0 +1,105 @@
+<div class="form-group">
+  <%= form.label :customer_name %><br>
+  <%= form.text_field :customer_name,
+          data: {autocomplete: @clients.map{|c| c.name }},
+          class: "form-control",
+          id: 'customer_name' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :invoice_number %><br>
+  <%= form.text_field :invoice_number, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= form.label :order_number %><br>
+  <%= form.text_field :order_number, class: "form-control" %>
+</div>
+<div class="form-group">
+  <%= form.label :emails %><br>
+  <%= form.text_field :emails, class: 'form-control', id: 'emails_field' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :invoice_date  %><br>
+  <%= form.text_field :invoice_date, 'data-role' => 'datepicker', class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :due_date  %><br>
+  <%= form.text_field :due_date, 'data-role' => 'datepicker', class: 'form-control' %>
+</div>
+<div class="form-group">
+  <label>Items Details</label>
+
+  <table id="table_item" class='table'>
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total price</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody class="nested_form">
+    <%= form.nested_fields_for :invoice_items, show_empty: true do |f|
+      if f
+        render 'estimate_item', f: f
+      else
+        render 'estimate_item_none'
+      end
+    end -%>
+    </tbody>
+  </table>
+  <a href="#" class="btn btn-primary add">Add Item</a>
+
+  <table class="table total_amount_table">
+    <tr>
+      <td colspan="3" class="right span-14">Sub Total</td>
+      <td colspan="2" class="right">
+        <div class='sub_total'>0</div>
+      </td>
+    </tr>
+    <tr class='item'>
+      <td colspan="3" class="right span-14">Discount(%)</td>
+      <td class="span-3 discount">
+        <%= form.number_field :discount,
+            class: 'span-3 right form-control',
+            min: 0,
+            placeholder: 0 %>
+      </td>
+      <td class="center span-2"> - <span class='discount_sum'>0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="right span-14">Shipping Charges</td>
+      <td class="span-3">
+        <%= form.number_field :shipping_charges,
+            class: 'span-3 right form-control',
+            min: 0, id: 'shipping_charges',
+            placeholder: 0 %>
+      </td>
+      <td class="center span-2"><span class='shipping_sum'>0</span></td>
+    </tr>
+    <tr>
+      <td colspan="3" class="right span-14">Total</td>
+      <td colspan="2" class="right">
+        <span class='total_sum'>0</span>
+        <%= form.hidden_field :amount %>
+        <%= form.hidden_field :sub_total_amount %>
+      </td>
+    </tr>
+  </table>
+</div>
+<p>
+  <%= label_tag :job_estimate_assets, "Attachment" %><br>
+  <%= file_field_tag('invoice_assets_image', multiple: true, name: "invoice[assets_attributes][][image]") %>
+</p>
+
+<div class="form-group">
+  <%= form.label :customer_notes %><br>
+  <%= form.text_area :customer_notes, class: 'form-control', rows: 4 %>
+</div>
+<div class="form-group">
+  <%= form.label :terms_and_cond %><br>
+  <%= form.text_area :terms_and_cond, value: terms_and_conditions, class: 'form-control', rows: 10 %>
+</div>

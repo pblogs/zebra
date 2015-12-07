@@ -11,13 +11,21 @@ class Private::JobEstimatesController < ApplicationController
   def show
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Show Job Estimate"
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.pdf do
+        render pdf: "job_estimates", layout: 'pdf.html.erb'   # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def new
     @job_estimate = JobEstimate.new
     @page_title = "New Job Estimate"
     @clients = Client.order(:name)
-    @materials = Material.active.includes(:manufacturer)
+    @gun_marking_categories = GunMarkingCategory.all
   end
 
   def create
@@ -34,7 +42,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimates_path
     else
       @clients = Client.order(:name)
-      @materials = Material.active.includes(:manufacturer)
+      @gun_marking_categories = GunMarkingCategory.all
       render action: :new
     end
   end
@@ -43,7 +51,7 @@ class Private::JobEstimatesController < ApplicationController
     @job_estimate = JobEstimate.find(params[:id])
     @page_title = "Edit Job Estimate"
     @clients = Client.order(:name)
-    @materials = Material.active.includes(:manufacturer)
+    @gun_marking_categories = GunMarkingCategory.all
   end
 
   def update
@@ -60,7 +68,7 @@ class Private::JobEstimatesController < ApplicationController
       redirect_to private_job_estimate_path(@job_estimate)
     else
       @clients = Client.order(:name)
-      @materials = Material.active.includes(:manufacturer)
+      @gun_marking_categories = GunMarkingCategory.all
       render action: :edit
     end
   end
@@ -86,9 +94,9 @@ class Private::JobEstimatesController < ApplicationController
     puts emails
 
     respond_to do |format|
-      format.json  {
-        render json: { emails: emails}
-      }
+      format.json  do
+        render json: { emails: emails }
+      end
     end
   end
 
@@ -98,6 +106,18 @@ class Private::JobEstimatesController < ApplicationController
     document.destroy
 
     flash[:notice] = 'Document deleted!'
-    redirect_to  private_job_estimate_path(@job_estimate)
+    redirect_to private_job_estimate_path(@job_estimate)
+  end
+
+  def mark_invoice
+    @job_estimate = JobEstimate.find(params[:id])
+    @job_estimate.send("mark_as_#{params[:status].downcase}") if JobEstimate::STATE.values.include?(params[:status])
+
+    respond_to do |format|
+      format.html do
+        redirect_to :back
+      end
+      format.js
+    end
   end
 end

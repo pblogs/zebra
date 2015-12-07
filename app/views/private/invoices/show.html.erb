@@ -1,0 +1,31 @@
+<hr>
+<% if permitted_to?(:edit, :private_job_estimates) and !in_mobile_view? %>
+  <div class="btn-group noprint" role="group" aria-label="...">
+    <%= link_to fa_icon('pencil'), edit_private_invoice_path(@invoice.id), class: "btn btn-default" %>
+    <%= link_to fa_icon('print'), private_invoice_path(@invoice.id, format: 'pdf'), target: '_blank', class: 'btn btn-default' %>
+    <%= link_to fa_icon("trash-o"), private_invoice_path(@invoice.id), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "btn btn-danger" %>
+  </div>
+
+  <%= link_to 'Some action', '#', class: 'btn btn-default' %>
+<% end %>
+<hr>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 preview_estimate">
+  <%= render partial: 'one' %>
+  <%= render 'assets' if @invoice.assets.any? %>
+  <%= content_for :breadcrumb do %>
+    <ul id="breadcrumb" class="noprint">
+      <li><%= link_to 'Dashboard', private_home_path %></li>
+      <li>»</li>
+      <li><%= link_to 'Invoices', private_invoices_path %></li>
+      <li>»</li>
+      <li><%= @page_title %></li>
+    </ul>
+  <% end %>
+  <%= content_for :submenu do %>
+    <% if permitted_to? :create, :private_job_estimates -%>
+      <li><%= active_link_to 'New Invoice', new_private_invoice_path %></li>
+    <% end %>
+  <% end %>
+  </div>
+</div>

@@ -113,7 +113,7 @@ button { width:auto; overflow:visible; padding:4px 10px 3px 7px; }
 button[type] { padding:4px 10px 4px 7px; line-height:17px; }
 *:first-child+html button[type] { padding:4px 10px 3px 7px; }
 button img, a.button img { margin:0 3px -3px 0 !important; padding:0; border:none; width:16px; height:16px; float:none; }
-input.button:hover, button:hover, a.button:hover{ background-color:#dff4ff; border:1px solid #c2e1ef; color:#336699; }
+/*input.button:hover, button:hover, a.button:hover{ background-color:#dff4ff; border:1px solid #c2e1ef; color:#336699; }*/
 a.button:active { background-color:#6299c5; border:1px solid #6299c5; color:#fff; }
 body .positive { color:#529214; border-color: #529214; background-color:#E6EFC2;}
 body .negative { color:#d12f19; border-color: #d12f19; }
@@ -135,8 +135,6 @@ a.negative:active { background-color:#d12f19; border:1px solid #d12f19; color:#f
 /* tables */
 table { }
 th { background: #333; color: #fff; font-weight: normal; }
-td { border-right: solid 1px #ccc; border-bottom: solid 1px #ccc; ;}
-td.actions { border-right: none; }
 th, td, caption { padding: 2px 2px 2px 4px; }
 tr.even td { background: #ededed; }
 table.sortable tr:hover { background: #FEEA86; }
@@ -157,7 +155,6 @@ th.center { padding: 2px 2px 2px 4px;}
 /* controls */
 #new { float: right; margin: -25px 0 0 0; }
 #new a { color: #529214; margin: 0; display: block; border: none; }
-.actions { padding: 0; min-width: 130px; }
 .edit, .delete, .show { margin: 0; border: none; font-weight: normal; padding: 0 4px; }
 .edit:hover, .delete:hover, .show:hover { text-decoration: none; color: #fff; }
 .edit { color: #941494; }

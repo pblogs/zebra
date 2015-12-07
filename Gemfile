@@ -25,8 +25,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'awesome_print'
   gem 'quiet_assets',     '>= 1.0.1'
-  gem 'heroku'
-  gem 'thin'
+
+  # pry awesomeness
+  gem 'pry-rails', group: :development
+  gem 'pry-stack_explorer', group: :development
 end
 
 gem 'stringex'
@@ -45,20 +47,21 @@ gem 'wicked'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'figaro'
+gem 'thin'
 
 gem 'jquery-ui-rails'
 gem 'fullcalendar-rails'
 gem 'active_model_serializers'
 gem 'jquery-minicolors-rails'
 gem 'bootstrap-sass', '3.1.1.0'
+gem "font-awesome-rails"
 
 #for heroku
 gem 'rails_log_stdout'
 # gem 'rails3_serve_static_assets'
 gem 'rails_12factor'
 gem 'heroku'
-gem 'thin'
-
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'delayed_job'
 gem 'delayed_job_active_record'

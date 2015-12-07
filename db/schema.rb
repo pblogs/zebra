@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150429124243) do
+ActiveRecord::Schema.define(:version => 20150613191208) do
 
   create_table "assets", :force => true do |t|
     t.string   "image_file_name"
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.integer  "job_estimate_id"
     t.string   "title"
     t.text     "description"
-    t.integer  "quantity",        :default => 1
+    t.decimal  "quantity",        :default => 1.0
     t.decimal  "price",           :default => 0.0
     t.decimal  "total_price",     :default => 0.0
     t.datetime "created_at",                       :null => false
@@ -274,6 +274,35 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.integer "job_sheet_id"
   end
 
+  create_table "invoice_items", :force => true do |t|
+    t.integer  "invoice_id"
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "quantity"
+    t.decimal  "price"
+    t.decimal  "total_price"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "invoices", :force => true do |t|
+    t.string   "customer_name"
+    t.string   "invoice_number"
+    t.string   "order_number"
+    t.date     "invoice_date"
+    t.date     "due_date"
+    t.text     "customer_notes"
+    t.text     "terms_and_cond"
+    t.string   "emails"
+    t.integer  "status",                                         :default => 0
+    t.decimal  "amount",           :precision => 8, :scale => 2
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
+    t.decimal  "discount",                                       :default => 0.0
+    t.decimal  "shipping_charges", :precision => 8, :scale => 2
+    t.decimal  "sub_total_amount", :precision => 8, :scale => 2
+  end
+
   create_table "job_estimates", :force => true do |t|
     t.string   "name_client"
     t.string   "status"
@@ -290,6 +319,7 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
     t.decimal  "sub_total_amount",     :default => 0.0
     t.decimal  "discount",             :default => 0.0
     t.decimal  "shipping_charges",     :default => 0.0
+    t.integer  "state",                :default => 1
   end
 
   create_table "job_locations", :force => true do |t|
@@ -464,6 +494,23 @@ ActiveRecord::Schema.define(:version => 20150429124243) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "settings", :force => true do |t|
+    t.string   "company_name"
+    t.string   "city"
+    t.string   "address"
+    t.string   "postal_code"
+    t.string   "state"
+    t.string   "phone"
+    t.string   "fax"
+    t.text     "terms_and_conditions"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "time_entries", :force => true do |t|
     t.integer  "user_id"

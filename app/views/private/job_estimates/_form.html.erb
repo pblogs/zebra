@@ -1,6 +1,9 @@
 <div class="form-group">
   <%= form.label :name_client %><br>
-  <%= form.text_field :name_client, data: {autocomplete: @clients.map{|c| c.name }}, class: "form-control" %>
+  <%= form.text_field :name_client,
+        data: {autocomplete: @clients.map{|c| c.name }},
+        class: "form-control",
+        id: 'customer_name' %>
 </div>
 
 <div class="form-group">
@@ -13,7 +16,7 @@
 </div>
 <div class="form-group">
   <%= form.label :emails %><br>
-  <%= form.text_field :emails, class: 'form-control' %>
+  <%= form.text_field :emails, class: 'form-control', id: 'emails_field' %>
 </div>
 
 <div class="form-group">
@@ -31,7 +34,7 @@
   <table id="table_item" class='table'>
     <thead>
       <tr>
-        <th>Title</th>
+        <th>Description</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Total price</th>
@@ -55,23 +58,28 @@
       <td colspan="3" class="right span-14">Sub Total</td>
       <td colspan="2" class="right">
         <div class='sub_total'>0</div>
-        <%= form.hidden_field :total_amount %>
       </td>
     </tr>
-    <tr>
+    <tr class='item'>
       <td colspan="3" class="right span-14">Discount(%)</td>
       <td class="span-3 discount"><%= form.number_field :discount, class: 'span-3 right form-control', min: 0 %></td>
       <td class="center span-2"> - <span class='discount_sum'>0</span></td>
     </tr>
-    <tr>
+    <tr class='item'>
       <td colspan="3" class="right span-14">Shipping Charges</td>
-      <td class="span-3"><%= form.number_field :shipping_charges, class: 'span-3 right form-control', min: 0 %></td>
+      <td class="span-3">
+        <%= form.number_field :shipping_charges,
+            class: 'span-3 right form-control',
+            min: 0, id: 'shipping_charges',
+            placeholder: 0 %>
+      </td>
       <td class="center span-2"><span class='shipping_sum'>0</span></td>
     </tr>
     <tr>
       <td colspan="3" class="right span-14">Total</td>
       <td colspan="2" class="right">
         <span class='total_sum'>0</span>
+        <%= form.hidden_field :total_amount %>
         <%= form.hidden_field :sub_total_amount %>
       </td>
     </tr>
@@ -88,5 +96,5 @@
 </div>
 <div class="form-group">
   <%= form.label :terms_and_conditions %><br>
-  <%= form.text_area :terms_and_conditions, class: 'form-control', rows: 10 %>
+  <%= form.text_area :terms_and_conditions, value: @job_estimate.terms_and_conditions.blank? ? settings.terms_and_conditions : @job_estimate.terms_and_conditions, class: 'form-control', rows: 10 %>
 </div>

@@ -13,27 +13,36 @@
 
 <hr>
 
-<table class="table table-hover">
-  <tr>
-    <th class="center number">#</th>
-    <th class="nosort">Client</th>
-    <th class="center">Reference</th>
-    <th class="center">Estimate Date</th>
-    <th class="center">Expiry Date</th>
-    <th class="actions nosort"></th>
-  </tr>
-  <% @job_estimates.each do |estimate| %>
-    <tr>
-      <td><%= estimate.id %></td>
-      <td><%= estimate.name_client %></td>
-      <td><%= estimate.reference %></td>
-      <td><%= estimate.estimate_date %></td>
-      <td><%= estimate.expiry_date %></td>
-      <td class="actions">
-        <%= link_to "Delete", private_job_estimate_path(estimate), confirm: 'Are you sure? This cannot be undone!', method: :delete, class: "delete" %>
-        <%= link_to "Edit", edit_private_job_estimate_path(estimate), class: "edit" %>
-        <%= link_to "Show", private_job_estimate_path(estimate), class: "show" %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div class="col-md-12">
+  <div class="estimate_listing col-md-12">
+    <table class="table table-hover" id='#datatable'>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Estimate#</th>
+        <th>Reference#</th>
+        <th>Customer Name</th>
+        <th>Status</th>
+        <th class='to_hide'>Amount</th>
+      </tr>
+      <% @job_estimates.each do |estimate| %>
+        <tr>
+          <td><%= estimate.id %></td>
+          <td><%= estimate.created_at.strftime('%d %b %Y') %></td>
+          <td><%= link_to estimate.estimate,  private_job_estimate_path(estimate), remote: true %></td>
+          <td><%= estimate.reference %></td>
+          <td><%= estimate.name_client %></td>
+          <td class="<%= JobEstimate::STATE[estimate.state].downcase %>"><%= JobEstimate::STATE[estimate.state] %></td>
+          <td class='to_hide'><%= number_to_currency estimate.total_amount %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-8 preview_estimate" style='display:none;'></div>
+</div>
+<script type="text/javascript">
+  jQuery('.estimate_listing a').click(function(event) {
+    jQuery('tr.selected').removeClass('selected')
+    jQuery(this).parent().closest('tr').addClass('selected')
+  });
+</script>

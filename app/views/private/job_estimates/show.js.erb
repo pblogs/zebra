@@ -1,0 +1,16 @@
+// window.history.pushState('private_job_estimates_url', 'job estimate opened', '?estimate=<%= @job_estimate.id %>')
+jQuery('div.estimate_listing').removeClass('col-md-12')
+jQuery('div.estimate_listing').addClass('col-md-4')
+jQuery('.to_hide').fadeOut('fast');
+jQuery('div.preview_estimate').fadeOut('fast')
+jQuery('div.preview_estimate').html('<%= j(render(@job_estimate)) %>')
+jQuery('div.preview_estimate').fadeIn('fast')
+
+jQuery('.close_preview').click(function (event) {
+  jQuery('.to_hide').fadeIn('fast');
+  jQuery('tr.selected').removeClass('selected')
+  jQuery('div.preview_estimate').fadeOut('slow')
+  jQuery('div.preview_estimate').html('')
+  jQuery('div.estimate_listing').removeClass('col-md-4')
+  jQuery('div.estimate_listing').addClass('col-md-12')
+})

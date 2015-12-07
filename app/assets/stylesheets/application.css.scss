@@ -9,13 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require ui-lightness/jquery-ui-1.10.3.custom
- *= require bootstrap-dropdown
  *= require fullcalendar
  *= require jquery.minicolors
  *= require api/crews
  *= require jquery-ui/autocomplete
  *= require private/comments
  *= require private/job_estimates
+  *= require font-awesome
  *= require_self
  */
 
@@ -159,4 +159,16 @@ body {
 .pull-right {
   float: right;
   a{text-decoration: none;color:#fff;}
+}
+span.open{
+  color: #2c96dd;
+  font-size: 12px;
+}
+span.overdue {
+  color: #ef6f08;
+  font-size: 12px;
+}
+span.draft{
+  color: #879697;
+  font-size: 12px;
 }
